@@ -1,0 +1,82 @@
+// Breakpoints (quasar) => https://quasar.dev/style/breakpoints
+// 最大尺寸 599.99px (電腦為主)--------------------------------------------------------------------------------
+
+// 字型
+// *
+//   font-family: ChenYuluoyan-Thin
+
+// 文字超過範圍自動換行
+.text-wrapper
+  white-space: pre-wrap
+  word-break: break-all
+  word-wrap: break-word
+
+.q-px-xxl
+  padding-left: 70px
+  padding-right: 70px
+
+.q-px-xxxl
+  padding-left: 120px
+  padding-right: 120px
+
+
+// 首頁 ....................
+
+// 輪播圖
+.q-carousel
+  height: 880px
+
+// 帶你去爬山區塊
+#indexImg-lg
+  height: 800px
+  position: relative
+  display: block
+
+#indexImg-xs
+  position: relative
+  display: none
+
+// 卡片輪播圖
+
+// 內文多行省略 => https://codepen.io/tynadesigner/pen/ZEBGpGN
+.description-textbox
+  overflow: hidden
+  display: -webkit-box
+  -webkit-line-clamp: 3
+  /*省略第n行後的文字*/
+  -webkit-box-orient: vertical
+  /*設定元素是垂直布局*/
+
+// 聯絡我們
+.contactus-mb
+  margin-bottom: 40px
+
+// 中尺寸 1023.99px (平板)--------------------------------------------------------------------------------
+@media (max-width: $breakpoint-sm-max)
+
+  // 首頁 ....................
+
+  // 帶你去爬山區塊
+  #indexImg-lg
+    display: block
+
+  #indexImg-xs
+    display: none
+
+  .contactus-mb
+    margin-bottom: 80px
+
+// 最小尺寸 599.99px (手機)--------------------------------------------------------------------------------
+@media (max-width: $breakpoint-xs-max)
+
+  // 首頁 ....................
+
+  // 帶你去爬山區塊
+  #indexImg-lg
+    display: none
+
+  #indexImg-xs
+    display: flex
+
+  .contactus-mb
+    margin-bottom: 120px
