@@ -4,17 +4,31 @@
   <div class="gt-lg" id="mainbanner">
     <div class="row">
       <q-responsive class="col" :ratio="16 / 9">
-        <div style="z-index: 1;">
+        <div style="overflow: hidden; ">
+          <!-- 01 背景山雲海 -->
           <!-- <q-img src="../assets/01.jpg" id="banner1" style="width: 100%; height: 100%; position: absolute;" /> -->
-          <q-img src="../assets/02.png" id="banner2" style="width: 100%; height: 100%; position: absolute;" />
-          <q-img src="../assets/04.png" id="banner4" style="width: 100%; height: 100%; position: absolute;" />
-          <!-- <q-img src="../assets/05.png" id="banner5" style="width: 100%; height: 100%; position: absolute;" /> -->
-          <q-img src="../assets/03.png" id="banner3" style="width: 100%; height: 100%; position: absolute;" />
+          <!-- 02 山 -->
+          <q-img src="../assets/02.png" id="banner2"
+            style="width: 110%; height: 100%; position: absolute; top:-5vh; left: -10%;" />
+          <!-- 04 大雲 -->
+          <!-- <q-img src="../assets/04.png" id="banner4" style="width: 110%; height: 100%; position: absolute;" /> -->
+          <!-- 03 最前景人物 -->
+          <q-img src="../assets/03.png" id="banner3"
+            style="width: 110%; height: 100%; position: absolute;  top:-5vh; left: -10%;" />
+          <!-- 05 小雲 -->
+          <q-img src="../assets/05.png" id="banner5" style="width: 110%; height: 100%; position: absolute;" />
+        </div>
+        <div style="position: absolute; width: 100%; height: 500%; top:80vh; left: 0;" id="banner6">
+          <q-img src="../assets/06.cloud_top.png" />
+        </div>
+        <div style="position: absolute; width: 100%; height: 500%; top:80vh; left: 0;" id="banner6">
+          <q-img src="../assets/06.cloud_top.png" />
         </div>
       </q-responsive>
     </div>
 
     <div class="row" style="background: #fff; color: #5E8A4B;">
+      <div style="width:100%; height:200px; "></div>
       <div class="col-12 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>關於我們</span>
       </div>
@@ -237,6 +251,10 @@ import gsap from 'gsap'
 // get other plugins:
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
+// ES6 or TypeScript:
+// https://www.npmjs.com/package/cheerio
+// import * as cheerio from 'cheerio'
+
 // don't forget to register plugins
 gsap.registerPlugin(ScrollTrigger)
 
@@ -250,9 +268,46 @@ const scrolldata = {
 
 onMounted(() => {
   gsap.to('#banner2', {
-    // x: 1000
     scrollTrigger: scrolldata,
-    y: 300
+    x: -800,
+    y: 50
+  })
+  gsap.to('#banner5', {
+    scrollTrigger: scrolldata,
+    x: -1000,
+    y: 10
+  })
+  gsap.to('#banner3', {
+    scrollTrigger: scrolldata,
+    x: 500,
+    y: 100
   })
 })
+
+// $('#banner4').each(function (index, banner4) {
+//   gsap.set(banner4, {
+//     width: '100%',
+//     height: '100%',
+//     background: 'url(../assets/04.png) no-repeat center/80%',
+//     opacity: 0.8,
+//     position: 'absolute',
+//     top: 'random(0,100)' + '%',
+//     x: function () {
+//       return index % 2 === 0 ? -$(window).width() : $(window).width()
+//     }
+//   })
+//   gsap.to(banner4, {
+//     x: function () {
+//       return index % 2 === 0 ? $(window).width() : -$(window).width()
+//     },
+//     onRepeat() {
+//       $(banner4).css({
+//         top: gsap.utils.random(0, 100) + '%'
+//       })
+//     },
+//     repeat: -1,
+//     duration: 60,
+//     ease: 'none'
+//   })
+// })
 </script>

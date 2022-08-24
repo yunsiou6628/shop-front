@@ -1,5 +1,6 @@
 import { store } from 'quasar/wrappers'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 /*
  * If not building with SSR mode, you can
@@ -12,7 +13,8 @@ import { createPinia } from 'pinia'
 
 export default store((/* { ssrContext } */) => {
   const pinia = createPinia()
-
+  // 重新整理不會自動登出 piniaPluginPersistedstate
+  pinia.use(piniaPluginPersistedstate)
   // You can add Pinia plugins here
   // pinia.use(SomePiniaPlugin)
 
