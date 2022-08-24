@@ -181,52 +181,39 @@
         </q-tabs> -->
 
         <div>
-          <!-- btn-dropdown 選單 -->
-          <q-btn-dropdown flat round color="teal-10" icon="menu" size="md">
+          <q-btn flat icon="menu">
+            <q-menu>
+              <q-list style="min-width: 100px">
 
-            <q-list>
-              <q-item clickable v-close-popup to="/" color="teal-10">
-                <q-item-section>
-                  <q-item-label>
-                    <i class="fa-solid fa-house"></i>
-                    <span class="q-pl-sm">首頁</span>
+                <q-item clickable v-close-popup to="/" color="teal-10">
+                  <q-item-section>
+                    <!-- <div class="col q-pr-xs"><i class="fa-solid fa-house"></i></div> -->
+                    <span>首頁</span>
                     <!-- <q-img src="https://i.imgur.com/0U2S3Xo.png" style="width:100px;" /> -->
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
+                  </q-item-section>
+                </q-item>
 
-            <q-list>
-              <q-item clickable v-close-popup to="/ProductViewAll" color="teal-10">
-                <q-item-section>
-                  <q-item-label>
+                <q-item clickable v-close-popup to="/ProductViewAll" color="teal-10">
+                  <q-item-section>
                     <span>登山行程</span>
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
+                  </q-item-section>
+                </q-item>
 
-            <q-list>
-              <q-item clickable v-close-popup to="/ArticleColumn" color="teal-10">
-                <q-item-section>
-                  <q-item-label>
+                <q-item clickable v-close-popup to="/ArticleColumn" color="teal-10">
+                  <q-item-section>
                     <span>文章專欄</span>
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
+                  </q-item-section>
+                </q-item>
 
-            <q-list>
-              <q-item clickable v-close-popup to="/AboutUs" color="teal-10">
-                <q-item-section>
-                  <q-item-label>
+                <q-item clickable v-close-popup to="/AboutUs" color="teal-10">
+                  <q-item-section>
                     <span>關於我們</span>
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
+                  </q-item-section>
+                </q-item>
 
-          </q-btn-dropdown>
+              </q-list>
+            </q-menu>
+          </q-btn>
         </div>
 
         <q-space />

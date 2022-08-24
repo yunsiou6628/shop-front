@@ -44,7 +44,9 @@
       </div>
 
       <div class="col-12 q-py-sm text-weight-bold text-subtitle1 row">
-        <span>※ 本活動以登山安全為重，堅持雙領隊前後照應，讓大家安心登山。</span>
+        <span>※ 報名請先填寫個人資料與體能評估表單，填寫完成後，請靜候嚮導和您聯繫，與您討論是否適合參與此行程。</span>
+        <!-- <a href="https://forms.gle/XMM1QJdovvMCrEVs6">點擊填寫體能評估表</a> -->
+        <span>※ 本團出隊將以安全帶您上、下山為目標，故將評估您的健康與體能狀態，給予對應的訓練建議和行前準備。</span>
         <span>※ 因應防疫措施，14天內有國外旅遊史、確診者接觸史，最晚出發前1週請來電告知更換時間或取消。</span>
       </div>
 

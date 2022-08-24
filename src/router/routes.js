@@ -36,10 +36,20 @@ const routes = [
           admin: false
         }
       },
-      // 文章專欄
+      // 文章專欄 all
       {
         path: 'ArticleColumn',
         component: () => import('pages/ArticleColumn.vue'),
+        meta: {
+          title: '登山行程網站 | 文章專欄',
+          login: false,
+          admin: false
+        }
+      },
+      // 文章專欄 單頁
+      {
+        path: 'ArticleColumnOne',
+        component: () => import('pages/ArticleColumnOne.vue'),
         meta: {
           title: '登山行程網站 | 文章專欄',
           login: false,
