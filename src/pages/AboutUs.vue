@@ -256,6 +256,7 @@ import gsap from 'gsap'
 
 // get other plugins:
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { transform } from '@vue/compiler-core'
 
 // ES6 or TypeScript:
 // https://www.npmjs.com/package/cheerio
@@ -265,11 +266,11 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const scrolldata = {
-  start: 'top 10%',
-  end: 'bottom 10%',
+  start: 'top 0',
+  end: 'bottom 50',
   scrub: true,
-  trigger: '#mainbanner',
-  markers: true
+  trigger: '#mainbanner'
+  // markers: true
 }
 
 onMounted(() => {
@@ -300,13 +301,25 @@ onMounted(() => {
 
 // 監聽滑鼠移動
 window.addEventListener('mousemove', function (e) {
-  console.log('x:' + -(e.pageX - window.innerWidth / 2))
+  // console.log('x:' + -(e.pageX - window.innerWidth / 2))
 
-  // X = e.pageX - window.innerWidth / 2
-  // Y = e.pageY - window.innerHeight / 2
+  const numX = ((e.pageX - window.innerWidth / 2) / 500)
+  // console.log('X:' + numX)
+  const numY = ((e.pageY - window.innerHeight / 2) / 50)
+  // console.log('Y:' + numY)
+  // const numnum = (parseInt(((e.pageX - window.innerWidth / 2) / 50) - ((e.pageY - window.innerHeight / 2) / 50)))
+  // console.log(numnum)
   // gsap.set('#banner2', {
-  //   X = innerWidth / 50
+  //   X: numX
   // })
+  // 20 + '%'
+  //  10 + '%'
+  gsap.set('#gohiking', {
+    xPercent: numX,
+    yPercent: numY
+    // top: 20 + '%-' + numX,
+    // left: 10 + '%-' + numY
+  })
 })
 
 // 滑鼠監聽事件
@@ -346,4 +359,8 @@ window.addEventListener('mousemove', function (e) {
 //     ease: 'none'
 //   })
 // })
+
+// gsap 視差資料
+// GSAP 實現Parallax滾動視差特效 => https://blog.digishot.name/tw/552869212/page/blog/mode/show/cID/2/nNO/1651029107
+// Gsap 視差滾動 => https://animpen.com/pen/LgKtwBsd
 </script>

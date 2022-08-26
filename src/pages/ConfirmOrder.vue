@@ -1,7 +1,10 @@
 <template>
-  <q-stepper v-model="step" ref="stepper" color="teal-10" animated alternative-labels class="q-pa-md text-teal-10">
+  <q-stepper flat v-model="step" ref="stepper" animated alternative-labels active-color="light-green-9"
+    done-color="light-green-9" inactive-color="blue-grey-2" class="q-pa-md" style="font-weight: bolder;">
+
     <q-step :name="1" title="訂單確認" icon="settings" :done="step > 1">
-      <q-table title="訂單確認" :rows="cart" :columns="cartcolumns" row-key="name" hide-pagination class="text-teal-10">
+      <q-table title="訂單確認" :rows="cart" :columns="cartcolumns" row-key="name" hide-pagination
+        style="color: #5E8A4B; font-weight: bolder;">
         <template #body-cell-image="all">
           <q-td :img="img">
             <img :src="all.row.product.image" style="width:200px">
@@ -26,14 +29,14 @@
       </q-table>
 
       <div class="col-12 text-center q-pa-xl">
-        <q-p class="text-h6">總金額 {{ totalPrice }}</q-p>
+        <q-p class="text-h6" style="color: #5E8A4B;">總金額 {{ totalPrice }}</q-p>
       </div>
 
     </q-step>
 
     <q-step :name="2" title="填寫入山入園資料" icon="assignment" :done="step > 2">
       <div class="row justify-center">
-        <div class="q-col-gutter-lg q-pa-lg" style="width: 60%">
+        <div class="q-col-gutter-lg q-pa-lg" style="width: 60%; color: #5E8A4B;">
           <div class="q-py-md text-center">
             * 表單資料請確實填寫，將使用於入山入園申請、山屋申請及登山意外險上！
           </div>
@@ -42,8 +45,7 @@
             <q-input label="請輸入姓名" type="name" v-model="confirmform.name" lazy-rules :rules="rules.name" />
             <!-- 性別 -->
             <!-- https://quasar.dev/vue-components/option-group -->
-            <q-option-group v-model="confirmform.gender" :options="options" label="gender" color="primary" inline
-              dense />
+            <q-option-group v-model="confirmform.gender" :options="options" label="gender" inline dense />
             <!-- 手機號碼 -->
             <q-input label="請輸入手機號碼" type="phone" v-model="confirmform.phone" lazy-rules :rules="rules.phone" />
             <!-- E-mail -->
@@ -67,63 +69,85 @@
     </q-step>
 
     <q-step :name="3" title="付款" icon="assignment" :done="step > 3">
-      <div class="row justify-center">
-        <q-card class="q-pa-lg" style="width: 45%">
-          <div class="text-h6 ">商品明細 :</div>
-          <div v-for="(cart, idx) in cart" :key="idx">
-            <pre>行程名稱 : {{ cart.product.name }}</pre>
-            <pre>報名日期 : {{ cart.product.product_date }}</pre>
-            <pre>金額 : {{ cart.product.price }}</pre>
+      <div class="row justify-center content-center item-start">
+        <q-card flat class="q-pa-lg q-px-xxl" style="width: 30%; color: #5E8A4B;">
+          <div class="text-h6 text-weight-bold q-py-md">商品明細 :</div>
+          <div v-for="(cart, idx) in cart" :key="idx" class="text-weight-bold">
             <!-- <pre>{{cart}}</pre> -->
-            —
+            <div class="q-py-xs text-weight-bold text-h6">行程名稱 : {{ cart.product.name }}</div>
+            <div class="q-py-xs text-weight-bold text-h6">
+              <!-- {{ cart.product.product_date }} -->
+              報名日期 :
+              {{ new Date(cart.product.product_date.from).toLocaleDateString()
+              }} ~ {{ new Date(cart.product.product_date.to).toLocaleDateString() }}
+            </div>
+
+            <div class="q-py-xs text-weight-bold text-h6">金額 : {{ cart.product.price }}</div>
           </div>
-          <pre>匯款金額總計 : {{ totalPrice }}</pre>
+          <div class="q-py-lg text-weight-bold text-h6">匯款金額總計 : {{ totalPrice }}</div>
         </q-card>
       </div>
 
-      <div class="text-h6 q-pa-xl text-center">請選擇付款方式</div>
+      <div class="text-h5 q-pa-xl text-weight-bold text-center" style="color: #5E8A4B;">- 請選擇付款方式 -</div>
       <!-- 判斷3個選擇其中一個資料 ------------------------------------------------------------------------------- -->
       <div class="row justify-center">
-        <q-btn class="q-pa-xl text-center" style="width: 15%; border: 1px solid lightgray;" label="信用卡 / 金融卡"
-          @click="prompt1 = true" />
-        <q-btn class="q-pa-xl text-center" style="width: 15%; border: 1px solid lightgray;" label="LINE PAY / 街口支付"
-          @click="prompt2 = true" />
-        <q-btn class="q-pa-xl text-center" style="width: 15%; border: 1px solid lightgray;" label="ATM 轉帳"
-          @click="prompt3 = true" />
+        <q-btn class="q-pa-xl q-mx-sm text-weight-bold text-h6 text-center"
+          style="width: 20%; background: #F4F8EE; color: #5E8A4B;" label="信用卡 / 金融卡" @click="prompt1 = true" />
+        <q-btn class="q-pa-xl q-mx-sm text-weight-bold text-h6 text-center"
+          style="width: 20%; background: #F4F8EE; color: #5E8A4B;" label="LINE PAY / 街口支付" @click="prompt2 = true" />
+        <q-btn class="q-pa-xl q-mx-sm text-weight-bold text-h6 text-center"
+          style="width: 20%; background: #F4F8EE; color: #5E8A4B;" label="ATM 轉帳" @click="prompt3 = true" />
       </div>
 
       <!-- 信用卡 / 金融卡付款 -->
       <q-dialog v-model="prompt1" persistent>
-        <q-card style="min-width: 700px">
+        <q-card style="min-width: 700px; color: #5E8A4B;">
           <q-card-section>
-            <div class="text-h6 q-py-sm text-teal-10 text-center">信用卡 / 金融卡付款</div>
+            <div class="text-h5 q-pt-xl q-px-xl text-weight-bold text-center">信用卡 / 金融卡付款</div>
           </q-card-section>
 
           <!-- input 表單內容 -->
-          <q-card-section class="q-pt-none">
-            <q-select outlined dense autofocus v-model="confirmform.cardtype" :options="cardpayoptions" label="信用卡類別"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardtype" />
-            <img src="https://i.imgur.com/h9dUH13.jpg" style="width: 45px; height: 25px;">
-            <img src="https://i.imgur.com/iDUYpZl.jpg" style="width: 45px; height: 25px;">
-            <img src="https://i.imgur.com/rQrYDoD.jpg" style="width: 40px; height: 25px;">
-            <img src="https://i.imgur.com/mUiBGGX.jpg" style="width: 40px; height: 25px;">
-            <q-input outlined v-model="confirmform.cardnumber" label="信用卡卡號" dense autofocus
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardnumber" />
-            <q-input outlined dense autofocus v-model="confirmform.validitPeriod" label="卡號有效期限"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.validitPeriod" />
-            <q-input outlined dense autofocus v-model="confirmform.certification" label="信用卡認證碼"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.certification" />
-            <q-input outlined dense autofocus v-model="confirmform.cardname" label="持卡人姓名"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardname" />
-            <q-input outlined dense autofocus stack-label v-model="confirmform.cardbirthday" label="持卡人生日" type="date"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardbirthday" />
-            <q-input outlined dense autofocus v-model="confirmform.cardPhone" label="持卡人手機"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardPhone" />
+          <q-card-section>
+            <div class="q-pa-sm">
+              <q-select outlined dense autofocus v-model="confirmform.cardtype" :options="cardpayoptions" label="信用卡類別"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardtype" />
+
+              <div class="q-pt-sm">
+                <img src="https://i.imgur.com/h9dUH13.jpg" style="width: 45px; height: 25px;">
+                <img src="https://i.imgur.com/iDUYpZl.jpg" style="width: 45px; height: 25px;">
+                <img src="https://i.imgur.com/rQrYDoD.jpg" style="width: 40px; height: 25px;">
+                <img src="https://i.imgur.com/mUiBGGX.jpg" style="width: 40px; height: 25px;">
+              </div>
+            </div>
+            <div class="q-pa-sm">
+              <q-input outlined v-model="confirmform.cardnumber" label="信用卡卡號" dense autofocus
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardnumber" />
+            </div>
+            <div class="q-pa-sm">
+              <q-input outlined dense autofocus v-model="confirmform.validitPeriod" label="卡號有效期限"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.validitPeriod" />
+            </div>
+            <div class="q-pa-sm">
+              <q-input outlined dense autofocus v-model="confirmform.certification" label="信用卡認證碼"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.certification" />
+            </div>
+            <div class="q-pa-sm">
+              <q-input outlined dense autofocus v-model="confirmform.cardname" label="持卡人姓名"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardname" />
+            </div>
+            <div class="q-pa-sm">
+              <q-input outlined dense autofocus stack-label v-model="confirmform.cardbirthday" label="持卡人生日" type="date"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardbirthday" />
+            </div>
+            <div class="q-pa-sm">
+              <q-input outlined dense autofocus v-model="confirmform.cardPhone" label="持卡人手機"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.cardPhone" />
+            </div>
           </q-card-section>
 
-          <q-card-actions align="right" class="text-teal-10">
-            <q-btn flat label="完成" v-close-popup color="teal-10" />
-            <q-btn flat label="取消" v-close-popup />
+          <q-card-actions align="center" class="q-pb-lg">
+            <q-btn flat label="取消" v-close-popup style="color: #5E8A4B;" />
+            <q-btn flat label="完成" v-close-popup style="color: #fff; background: #5E8A4B;" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -132,7 +156,9 @@
       <q-dialog v-model="prompt2" persistent>
         <q-card style="min-width: 700px">
           <q-card-section>
-            <div class="text-h6 q-py-sm text-teal-10 text-center">LINE PAY / 街口支付付款</div>
+            <div class="text-h5 q-pt-xl q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">LINE PAY /
+              街口支付付款
+            </div>
           </q-card-section>
 
           <!-- input 表單內容 -->
@@ -141,19 +167,24 @@
             <img src="https://i.imgur.com/FCWWR7R.jpg" style="width: 300px; height: 300px;">
           </q-card-section>
 
-          <div class="text-h6 q-py-sm text-teal-10 text-center">核對付款資料</div>
-          <q-card-section class="q-pt-none row-8 justify-center">
-            <q-select outlined dense autofocus v-model="confirmform.checkPay" :options="payoptions" label="付款方式"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.checkPay" />
-            <q-input outlined dense autofocus v-model="confirmform.checkName" label="姓名" @keyup.enter="prompt1 = false"
-              lazy-rules :rules="rules.checkName" />
-            <q-input outlined dense autofocus v-model="confirmform.checkAccount" label="帳戶後五碼"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.checkAccount" />
+          <div class="text-h5 q-pt-xl q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">核對付款資料</div>
+          <q-card-section class="q-pt-none column justify-center">
+            <div class="q-pt-md">
+              <q-select outlined dense autofocus v-model="confirmform.checkPay" :options="payoptions" label="付款方式"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.checkPay" />
+            </div>
+            <div class="q-pt-md">
+              <q-input outlined dense autofocus v-model="confirmform.checkName" label="姓名"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.checkName" />
+            </div>
+            <div class="q-pt-md">
+              <q-input outlined dense autofocus v-model="confirmform.checkAccount" label="帳戶後五碼"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.checkAccount" />
+            </div>
           </q-card-section>
-
-          <q-card-actions align="center" class="text-teal-10">
-            <q-btn flat label="完成" v-close-popup color="teal-10" />
-            <q-btn flat label="取消" v-close-popup />
+          <q-card-actions align="center" class="q-pb-lg">
+            <q-btn flat label="取消" v-close-popup style="color: #5E8A4B;" />
+            <q-btn flat label="完成" v-close-popup style="color: #fff; background: #5E8A4B;" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -163,29 +194,40 @@
         <q-card style="min-width: 700px">
 
           <q-card-section>
-            <div class="text-h6 q-py-sm text-teal-10 text-center">ATM 轉帳付款</div>
-            <div class="text-teal-10 q-px-xl column">轉帳資料</div>
-            <div class="text-teal-10 q-px-xl column">銀行代號 : 013(代碼)</div>
-            <div class="text-teal-10 q-px-xl column">銀行名 : 國泰世華銀行(假設)</div>
-            <div class="text-teal-10 q-px-xl column">轉帳帳號 : 0000-0000-2222-1111</div>
-            <div class="text-teal-10 q-px-xl column">轉帳金額 : {{ totalPrice }}</div>
-            <div class="text-teal-10 q-px-xl column">繳款期限：2022年09月10日13點以前 (一周內若無繳費自動取消訂單)</div>
+            <div class="text-h5 q-pa-xl text-weight-bold text-center" style="color: #5E8A4B;">ATM 轉帳付款</div>
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">轉帳資料</div>
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">銀行代號 : 013(代碼)</div>
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">銀行名 : 國泰世華銀行(假設)</div>
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">轉帳帳號 :
+              0000-0000-2222-1111</div>
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">轉帳金額 : {{ totalPrice }}
+            </div>
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">繳款期限：2022年09月10日13點以前
+              (一周內若無繳費自動取消訂單)
+            </div>
           </q-card-section>
 
           <!-- input 表單內容 -->
-          <div class="text-h6 q-py-sm text-teal-10 text-center">核對 ATM 轉帳資料</div>
+          <div class="text-h5 q-pt-xl q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">核對 ATM 轉帳資料
+          </div>
           <q-card-section class="q-pt-none row-8 justify-center">
-            <q-input outlined dense autofocus v-model="confirmform.atmcheckName" label="姓名"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.atmcheckName" />
-            <q-input outlined dense autofocus v-model="confirmform.atmcheckAccount" label="帳戶後五碼"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.atmcheckAccount" />
-            <q-input outlined dense autofocus v-model="confirmform.atmcheckDay" label="轉帳日期"
-              @keyup.enter="prompt1 = false" lazy-rules :rules="rules.atmcheckDay" />
+            <div class="q-pt-md">
+              <q-input outlined dense autofocus v-model="confirmform.atmcheckName" label="姓名"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.atmcheckName" />
+            </div>
+            <div class="q-pt-md">
+              <q-input outlined dense autofocus v-model="confirmform.atmcheckAccount" label="帳戶後五碼"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.atmcheckAccount" />
+            </div>
+            <div class="q-pt-md">
+              <q-input outlined dense autofocus v-model="confirmform.atmcheckDay" label="轉帳日期"
+                @keyup.enter="prompt1 = false" lazy-rules :rules="rules.atmcheckDay" />
+            </div>
           </q-card-section>
 
-          <q-card-actions align="right" class="text-teal-10">
-            <q-btn flat label="完成" v-close-popup color="teal-10" />
-            <q-btn flat label="取消" v-close-popup />
+          <q-card-actions align="center" class="q-pb-lg">
+            <q-btn flat label="取消" v-close-popup style="color: #5E8A4B;" />
+            <q-btn flat label="完成" v-close-popup style="color: #fff; background: #5E8A4B;" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -218,15 +260,15 @@
     </q-step>
 
     <template v-slot:navigation>
-      <q-stepper-navigation class="col-12 text-center q-pa-xl">
-        <q-btn v-if="step > 1" flat color="teal-10" @click="$refs.stepper.previous()" label="返回" class="q-ml-sm" />
-        <q-btn v-if="step < 3" @click="$refs.stepper.next()" color="teal-10" label="確認" />
+      <q-stepper-navigation class="col-12 text-center q-pa-xl q-mx-lg">
+        <q-btn v-if="step > 1" flat @click="$refs.stepper.previous()" label="返回" style="color: #5E8A4B;" />
+        <q-btn v-if="step < 3" @click="$refs.stepper.next()" style="color: #fff; background: #5E8A4B;" label="確認" />
         <!-- @click="finishConfirm"  -->
         <!-- <q-btn v-else @click="finishConfirm" color="primary" label="結帳" /> -->
         <!-- btn 跳頁 => <q-btn to="/"/> -->
 
         <q-btn v-else @click='user.checkout(confirmform)' :disabled='!canCheckout' :btn="btn" label="結帳"
-          color="teal-10"></q-btn>
+          style="color: #fff; background: #5E8A4B;"></q-btn>
 
       </q-stepper-navigation>
     </template>

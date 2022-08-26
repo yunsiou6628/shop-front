@@ -5,13 +5,21 @@
 <template>
   <!-- 大尺寸 -->
   <div class="q-pa-xl gt-md"
-    style="width:100vw; height: 100vh; background-image: linear-gradient(to bottom,#F4F8EE, #fff); z-index: -1;">
+    style="width:100%; height: 100%; background-image: linear-gradient(to bottom,#F4F8EE, #fff); z-index: -1;">
     <div class="col-12">
-      <q-table title="已加入行程" :rows="cart" :columns="cartcolumns" row-key="name" hide-pagination>
+      <q-table title="已加入行程" :rows="cart" :columns="cartcolumns" row-key="name" hide-pagination
+        style="color: #5E8A4B; font-weight: bolder;">
         <template #body-cell-image="all">
           <q-td :img="img">
             <img :src="all.row.product.image" style="width:200px">
             <!-- <pre>{{all.row.product.image}}</pre> -->
+          </q-td>
+        </template>
+
+        <template #body-cell-product_date="all">
+          <q-td :product_date="product_date">
+            {{ new Date(all.row.product.product_date.from).toLocaleDateString()
+            }} ~ {{ new Date(all.row.product.product_date.to).toLocaleDateString() }}
           </q-td>
         </template>
 
@@ -40,22 +48,88 @@
 
       <!-- btn 跳頁 => <q-btn to="/"/> -->
       <div class="col-12 q-py-sm">
-        <q-btn color='primary' to="/ConfirmOrder" label="確認"></q-btn>
+        <q-btn to="/ConfirmOrder" style=" color: #fff; background: #5E8A4B;" label="確認"></q-btn>
       </div>
-      <!-- <q-td :btn="btn">
-              <q-btn @click='user.checkout' :disabled='!canCheckout'>結帳</q-btn>
-            </q-td> -->
     </div>
   </div>
 
   <!-- 中小尺寸 -->
   <div class="q-pa-xl lt-lg">
-    <div class="col-12">
-      <q-table :grid="$q.screen.lt.md" title="已加入行程" :rows="cart" :columns="cartcolumns" row-key="name" hide-pagination>
+    <div class="col-12" style="color: #5E8A4B;">
+      <q-table :grid="$q.screen.lt.md" title="已加入行程" :rows="cart" :columns="cartcolumns" row-key="name" hide-pagination
+        style="color: #5E8A4B; font-weight: bolder;">
+
+        <template v-slot:item="card">
+
+          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold" style=" color: #5E8A4B;">
+            <!-- <pre>{{ card }}</pre> -->
+            <div v-for="col in card.cols" :key="col.name">
+
+              <div v-if="col.name === 'image'">
+                <!-- {{ card.row.product.image }} -->
+                <div img="img">
+                  <img :src="card.row.product.image" style="width:100%">
+                </div>
+              </div>
+
+              <div class="q-ma-lg">
+                <div v-if="col.name === 'product'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'product_date'">
+                  <!-- <div>{{ card.row.product.product_date.from }} ~ {{ card.row.product.product_date.to }}</div> -->
+                  <div>{{ col.label }} : {{ new Date(card.row.product.product_date.from).toLocaleDateString() }} ~ {{
+                      new
+                        Date(card.row.product.product_date.to).toLocaleDateString()
+                  }} </div>
+                </div>
+
+                <div v-if="col.name === 'quantity'">
+                  <!-- {{ card.row.quantity }} -->
+                  <div class="row">
+                    <div class="col-3" style="margin: auto 0 ">{{ col.label }} : </div>
+                    <div :btn="btn" class="col-7">
+                      <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity - 1)" style="width: 10%;">-
+                      </q-btn>
+                      <span class="q-px-lg">{{ card.row.quantity }}</span>
+                      <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity + 1)" style="width: 10%;">+
+                      </q-btn>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if="col.name === 'price'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'subtotal'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'btn'" class="row justify-center">
+                  <div :btn="btn">
+                    <q-btn @click="updateCart(card.rowIndex, 0)">刪除</q-btn>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </q-card>
+        </template>
+
         <template #body-cell-image="all">
           <q-td :img="img">
             <img :src="all.row.product.image" style="width:200px">
             <!-- <pre>{{all.row.product.image}}</pre> -->
+          </q-td>
+        </template>
+
+        <template #body-cell-product_date="all">
+          <q-td :product_date="product_date">
+            {{ new Date(all.row.product.product_date.from).toLocaleDateString()
+            }} ~ {{ new Date(all.row.product.product_date.to).toLocaleDateString() }}
           </q-td>
         </template>
 
@@ -78,17 +152,11 @@
     </div>
 
     <div class="col-12 text-center q-pa-xl">
-      <!-- <div class="col-12 q-py-sm">
-            <q-p class="text-h6">總金額 {{ totalPrice }}</q-p>
-          </div> -->
 
       <!-- btn 跳頁 => <q-btn to="/"/> -->
       <div class="col-12 q-py-sm">
-        <q-btn color='primary' to="/ConfirmOrder" label="確認"></q-btn>
+        <q-btn to="/ConfirmOrder" label="確認" style="background: #5E8A4B; color: #fff;"></q-btn>
       </div>
-      <!-- <q-td :btn="btn">
-              <q-btn @click='user.checkout' :disabled='!canCheckout'>結帳</q-btn>
-            </q-td> -->
     </div>
   </div>
 
@@ -109,14 +177,23 @@ const cartcolumns = [
   {
     name: 'image',
     required: true,
-    label: '商品圖片',
+    label: '圖片',
     align: 'left'
     // btn 在 template #body-cell-image 加入
   },
   {
     name: 'product',
     required: true,
-    label: '購買商品',
+    label: '行程',
+    align: 'left',
+    field: row => row.product.name,
+    format: val => `${val}`,
+    sortable: true
+  },
+  {
+    name: 'product_date',
+    required: true,
+    label: '行程日期',
     align: 'left',
     field: row => row.product.name,
     format: val => `${val}`,

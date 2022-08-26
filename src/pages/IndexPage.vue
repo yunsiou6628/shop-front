@@ -57,11 +57,11 @@
 
           <img src="https://i.imgur.com/0U2S3Xo.png" class="col-auto" style="width: 85%;">
 
-          <div class="col-auto teal-10" style="width: 70%; font-size: 18px; padding: 30px 5px 0px 2px; color: #5E8A4B;">
+          <div class="col-auto" style="width: 70%; font-size: 18px; padding: 30px 5px 0px 2px; color: #5E8A4B;">
             <p>走進山裡，感受大自然的寬闊，對應自己的渺小，山給予的震撼感，不僅僅只是生理上的變化，還有更多無法言喻的感動，爬山不僅僅是一項活動，更是一場愛上山林、愛上生活的過程。</p>
           </div>
 
-          <div class="col-auto teal-10"
+          <div class="col-auto"
             style="width: 70%; font-size: 18px; padding: 20px 5px 20px 2px; color: #5E8A4B; text-align: center;">
             <p>帶你走進山林看見前所未見的台灣！</p>
           </div>

@@ -6,13 +6,11 @@
       <q-breadcrumbs-el label="登山行程" />
       <!-- 大分類 -->
       <q-breadcrumbs-el>
-        大分類 -
-        <pre>{{ product }}</pre>
+        <pre>{{ product.category.category }}</pre>
       </q-breadcrumbs-el>
       <!-- 小分類 -->
       <q-breadcrumbs-el>
-        小分類 -
-        <pre>{{ product }}</pre>
+        <pre>{{ product.category.sub }}</pre>
       </q-breadcrumbs-el>
     </q-breadcrumbs>
   </div>
