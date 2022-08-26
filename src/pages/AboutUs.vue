@@ -8,27 +8,33 @@
           <!-- 01 背景山雲海 -->
           <!-- <q-img src="../assets/01.jpg" id="banner1" style="width: 100%; height: 100%; position: absolute;" /> -->
           <!-- 02 山 -->
-          <q-img src="../assets/02.png" id="banner2"
-            style="width: 110%; height: 100%; position: absolute; top:-5vh; left: -10%;" />
+          <!-- <q-img src="../assets/02.png" id="banner2"
+            style="width: 110%; height: 100%; position: absolute; top:-5vh; left: -10%;" /> -->
           <!-- 04 大雲 -->
           <!-- <q-img src="../assets/04.png" id="banner4" style="width: 110%; height: 100%; position: absolute;" /> -->
           <!-- 03 最前景人物 -->
-          <q-img src="../assets/03.png" id="banner3"
-            style="width: 110%; height: 100%; position: absolute;  top:-5vh; left: -10%;" />
+          <!-- <q-img src="../assets/03mainbanner.png" id="banner3"
+            style="width: 110%; height: 100%; position: absolute;  top:-5vh; left: -10%;" /> -->
           <!-- 05 小雲 -->
-          <q-img src="../assets/05.png" id="banner5" style="width: 110%; height: 100%; position: absolute;" />
+          <!-- <q-img src="../assets/05.png" id="banner5" style="width: 110%; height: 100%; position: absolute;" />
         </div>
         <div style="position: absolute; width: 100%; height: 500%; top:80vh; left: 0;" id="banner6">
           <q-img src="../assets/06.cloud_top.png" />
         </div>
         <div style="position: absolute; width: 100%; height: 500%; top:80vh; left: 0;" id="banner6">
-          <q-img src="../assets/06.cloud_top.png" />
+          <q-img src="../assets/06.cloud_top.png" />-->
+
+          <q-img src="../assets/02.png" id="banner2" />
+          <q-img src="../assets/04.cloud.png" id="banner4" />
+          <q-img src="../assets/05.png" id="banner5" />
+          <q-img src="../assets/gohiking.png" id="gohiking" />
+          <q-img src="../assets/03mainbanner.png" id="banner3" />
+          <q-img src="../assets/06.cloud_top.png" id="banner6" />
         </div>
       </q-responsive>
     </div>
 
     <div class="row" style="background: #fff; color: #5E8A4B;">
-      <div style="width:100%; height:200px; "></div>
       <div class="col-12 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>關於我們</span>
       </div>
@@ -267,23 +273,53 @@ const scrolldata = {
 }
 
 onMounted(() => {
-  gsap.to('#banner2', {
+  // gsap.to('#banner2', {
+  //   scrollTrigger: scrolldata,
+  //   top: 400,
+  //   left: -800
+  // })
+  gsap.to('#banner3', {
     scrollTrigger: scrolldata,
-    x: -800,
-    y: 50
+    top: 400,
+    left: 800
+  })
+  gsap.to('#banner4', {
+    scrollTrigger: scrolldata,
+    left: 6000
   })
   gsap.to('#banner5', {
     scrollTrigger: scrolldata,
-    x: -1000,
-    y: 10
+    left: -2000
   })
-  gsap.to('#banner3', {
+  gsap.to('#gohiking', {
     scrollTrigger: scrolldata,
-    x: 500,
-    y: 100
+    top: 1000,
+    scale: 0.5
   })
 })
 
+// 監聽滑鼠移動
+window.addEventListener('mousemove', function (e) {
+  console.log('x:' + -(e.pageX - window.innerWidth / 2))
+
+  // X = e.pageX - window.innerWidth / 2
+  // Y = e.pageY - window.innerHeight / 2
+  // gsap.set('#banner2', {
+  //   X = innerWidth / 50
+  // })
+})
+
+// 滑鼠監聽事件
+// window.addEventListener('mousemove', function (e) {
+//   console.log('x:' + -(e.pageX - window.innerWidth / 2))
+//   gsap.set('#text', {
+//     textShadow: `
+//       ${(e.pageX - window.innerWidth / 2) / 50}px ${-(e.pageY - window.innerHeight / 2) / 50}px 10px yellow
+//     `
+//   })
+// })
+
+// 雲自動移動
 // $('#banner4').each(function (index, banner4) {
 //   gsap.set(banner4, {
 //     width: '100%',
