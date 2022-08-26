@@ -108,7 +108,7 @@
         <!-- 商品卡片輪播圖 -->
         <!-- slice(0,parseInt(products.length / 3)) => 顯示 products.length 所有商品，除 3 個一組，parseInt 有小數點強制轉換成整數 -->
         <!-- 大尺寸 -->
-        <div class="gt-md" id="cardCarousel3" style=" color: #5E8A4B;">
+        <div class="gt-md text-grey-7" id="cardCarousel3">
           <q-carousel v-model="slide2" transition-prev="slide-right" transition-next="slide-left" arrows navigation
             swipeable animated infinite :autoplay="autoplay2" control-color="light-green-5 padding" height="600px">
 

@@ -1,16 +1,85 @@
 <template>
   <q-stepper flat v-model="step" ref="stepper" animated alternative-labels active-color="light-green-9"
-    done-color="light-green-9" inactive-color="blue-grey-2" class="q-pa-md" style="font-weight: bolder;">
+    done-color="light-green-9" inactive-color="blue-grey-2" class="q-py-lg" style="font-weight: bolder;">
 
     <q-step :name="1" title="訂單確認" icon="settings" :done="step > 1">
-      <q-table title="訂單確認" :rows="cart" :columns="cartcolumns" row-key="name" hide-pagination
+      <q-table :grid="$q.screen.lt.md" title="訂單確認" :rows="cart" :columns="cartcolumns" row-key="name" hide-pagination
         style="color: #5E8A4B; font-weight: bolder;">
+
+        <template v-slot:item="card">
+
+          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold" style=" color: #5E8A4B;">
+            <!-- <pre>{{ card }}</pre> -->
+            <div v-for="col in card.cols" :key="col.name">
+
+              <div v-if="col.name === 'image'">
+                <!-- {{ card.row.product.image }} -->
+                <div img="img">
+                  <img :src="card.row.product.image" style="width:100%">
+                </div>
+              </div>
+
+              <div class="q-ma-lg">
+                <div v-if="col.name === 'product'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'product_date'">
+                  <!-- <div>{{ card.row.product.product_date.from }} ~ {{ card.row.product.product_date.to }}</div> -->
+                  <div>{{ col.label }} : {{ new Date(card.row.product.product_date.from).toLocaleDateString() }} ~ {{
+                      new
+                        Date(card.row.product.product_date.to).toLocaleDateString()
+                  }} </div>
+                </div>
+
+                <div v-if="col.name === 'quantity'">
+                  <!-- {{ card.row.quantity }} -->
+                  <div class="row">
+                    <div class="col-3" style="margin: auto 0 ">{{ col.label }} : </div>
+                    <div :btn="btn" class="col-7">
+                      <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity - 1)" style="width: 10%;">-
+                      </q-btn>
+                      <span class="q-px-lg">{{ card.row.quantity }}</span>
+                      <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity + 1)" style="width: 10%;">+
+                      </q-btn>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if="col.name === 'price'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'subtotal'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'btn'" class="row justify-center">
+                  <div :btn="btn">
+                    <q-btn @click="updateCart(card.rowIndex, 0)">刪除</q-btn>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </q-card>
+        </template>
+
         <template #body-cell-image="all">
           <q-td :img="img">
             <img :src="all.row.product.image" style="width:200px">
             <!-- <pre>{{all.row.product.image}}</pre> -->
           </q-td>
         </template>
+
+        <template #body-cell-product_date="all">
+          <q-td :product_date="product_date">
+            {{ new Date(all.row.product.product_date.from).toLocaleDateString()
+            }} ~ {{ new Date(all.row.product.product_date.to).toLocaleDateString() }}
+          </q-td>
+        </template>
+
         <template #body-cell-btn="all">
           <q-td :btn="btn">
             <q-btn @click="updateCart(all.rowIndex, 0)">刪除</q-btn>
@@ -36,67 +105,78 @@
 
     <q-step :name="2" title="填寫入山入園資料" icon="assignment" :done="step > 2">
       <div class="row justify-center">
-        <div class="q-col-gutter-lg q-pa-lg" style="width: 60%; color: #5E8A4B;">
-          <div class="q-py-md text-center">
-            * 表單資料請確實填寫，將使用於入山入園申請、山屋申請及登山意外險上！
-          </div>
+        <div class="q-gutter-md  q-pa-md-md q-pa-lg-lg q-px-lg-xl" style="width: 90%; color: #5E8A4B;">
 
-          <q-form class="q-gutter-md">
-            <q-input label="請輸入姓名" type="name" v-model="confirmform.name" lazy-rules :rules="rules.name" />
-            <!-- 性別 -->
-            <!-- https://quasar.dev/vue-components/option-group -->
-            <q-option-group v-model="confirmform.gender" :options="options" label="gender" inline dense />
-            <!-- 手機號碼 -->
-            <q-input label="請輸入手機號碼" type="phone" v-model="confirmform.phone" lazy-rules :rules="rules.phone" />
-            <!-- E-mail -->
-            <q-input label="請輸入E-mail" type="email" v-model="confirmform.email" lazy-rules :rules="rules.email" />
-            <!-- 生日 -->
-            <!-- v-model="form.product_date.from" stack-label label='行程出發日期' :rules="['date']" -->
-            <q-input label="請輸入生日" type="date" v-model="confirmform.birthday" stack-label lazy-rules
-              :rules="rules.birthday" />
-            <!-- 身分證字號 -->
-            <q-input label="請輸入身分證字號" type="identification" v-model="confirmform.identification" lazy-rules
-              :rules="rules.identification" />
-            <!-- 緊急連絡人 -->
-            <q-input label="請輸入緊急連絡人" type="emergencyContact" v-model="confirmform.emergencyContact" lazy-rules
-              :rules="rules.emergencyContact" />
-            <!-- 緊急連絡人電話 -->
-            <q-input label="請輸入緊急連絡人電話" type="emergencyContactPhone" v-model="confirmform.emergencyContactPhone"
-              lazy-rules :rules="rules.emergencyContactPhone" />
-          </q-form>
+          <q-card class="q-mx-lg-xl q-pa-lg q-pa-lg-xl">
+            <div class="q-py-md text-h6 text-weight-bold text-center">
+              * 表單資料請確實填寫，將使用於入山入園申請、山屋申請及登山意外險上！
+            </div>
+
+            <q-form class="q-gutter-md">
+              <q-input label="請輸入姓名" type="name" v-model="confirmform.name" lazy-rules :rules="rules.name" />
+              <!-- 性別 -->
+              <!-- https://quasar.dev/vue-components/option-group -->
+              <q-option-group v-model="confirmform.gender" :options="options" label="gender" inline dense />
+              <!-- 手機號碼 -->
+              <q-input label="請輸入手機號碼" type="phone" v-model="confirmform.phone" lazy-rules :rules="rules.phone" />
+              <!-- E-mail -->
+              <q-input label="請輸入E-mail" type="email" v-model="confirmform.email" lazy-rules :rules="rules.email" />
+              <!-- 生日 -->
+              <!-- v-model="form.product_date.from" stack-label label='行程出發日期' :rules="['date']" -->
+              <q-input label="請輸入生日" type="date" v-model="confirmform.birthday" stack-label lazy-rules
+                :rules="rules.birthday" />
+              <!-- 身分證字號 -->
+              <q-input label="請輸入身分證字號" type="identification" v-model="confirmform.identification" lazy-rules
+                :rules="rules.identification" />
+              <!-- 緊急連絡人 -->
+              <q-input label="請輸入緊急連絡人" type="emergencyContact" v-model="confirmform.emergencyContact" lazy-rules
+                :rules="rules.emergencyContact" />
+              <!-- 緊急連絡人電話 -->
+              <q-input label="請輸入緊急連絡人電話" type="emergencyContactPhone" v-model="confirmform.emergencyContactPhone"
+                lazy-rules :rules="rules.emergencyContactPhone" />
+            </q-form>
+          </q-card>
         </div>
       </div>
     </q-step>
 
     <q-step :name="3" title="付款" icon="assignment" :done="step > 3">
-      <div class="row justify-center content-center item-start">
-        <q-card flat class="q-pa-lg q-px-xxl" style="width: 30%; color: #5E8A4B;">
-          <div class="text-h6 text-weight-bold q-py-md">商品明細 :</div>
-          <div v-for="(cart, idx) in cart" :key="idx" class="text-weight-bold">
-            <!-- <pre>{{cart}}</pre> -->
-            <div class="q-py-xs text-weight-bold text-h6">行程名稱 : {{ cart.product.name }}</div>
-            <div class="q-py-xs text-weight-bold text-h6">
-              <!-- {{ cart.product.product_date }} -->
-              報名日期 :
-              {{ new Date(cart.product.product_date.from).toLocaleDateString()
-              }} ~ {{ new Date(cart.product.product_date.to).toLocaleDateString() }}
-            </div>
+      <div class="row justify-center content-center">
+        <q-card class="q-pa-lg q-px-lg-xl 7">
+          <div class=" q-px-sm-xl" style="width: 100%;">
+            <div class=" text-h6 text-weight-bold q-py-md">商品明細 :</div>
+            <div v-for="(cart, idx) in cart" :key="idx" class="text-weight-bold">
+              <!-- <pre>{{cart}}</pre> -->
+              <div class="q-py-xs text-weight-bold text-h6">行程名稱 : {{ cart.product.name }}</div>
+              <div class="q-py-xs text-weight-bold text-h6">
+                <!-- {{ cart.product.product_date }} -->
+                報名日期 :
+                {{ new Date(cart.product.product_date.from).toLocaleDateString()
+                }} ~ {{ new Date(cart.product.product_date.to).toLocaleDateString() }}
+              </div>
 
-            <div class="q-py-xs text-weight-bold text-h6">金額 : {{ cart.product.price }}</div>
+              <div class="q-py-xs text-weight-bold text-h6">金額 : $ {{ cart.product.price }}</div>
+            </div>
+            <div class="q-py-lg text-weight-bold text-h6">匯款金額總計 : $ {{ totalPrice }}</div>
           </div>
-          <div class="q-py-lg text-weight-bold text-h6">匯款金額總計 : {{ totalPrice }}</div>
         </q-card>
       </div>
 
       <div class="text-h5 q-pa-xl text-weight-bold text-center" style="color: #5E8A4B;">- 請選擇付款方式 -</div>
       <!-- 判斷3個選擇其中一個資料 ------------------------------------------------------------------------------- -->
-      <div class="row justify-center">
-        <q-btn class="q-pa-xl q-mx-sm text-weight-bold text-h6 text-center"
-          style="width: 20%; background: #F4F8EE; color: #5E8A4B;" label="信用卡 / 金融卡" @click="prompt1 = true" />
-        <q-btn class="q-pa-xl q-mx-sm text-weight-bold text-h6 text-center"
-          style="width: 20%; background: #F4F8EE; color: #5E8A4B;" label="LINE PAY / 街口支付" @click="prompt2 = true" />
-        <q-btn class="q-pa-xl q-mx-sm text-weight-bold text-h6 text-center"
-          style="width: 20%; background: #F4F8EE; color: #5E8A4B;" label="ATM 轉帳" @click="prompt3 = true" />
+      <div class="row justify-center content-center text-center bg-yellow q-px-lg-xl q-mx-lg-xl">
+        <div class="col">
+          <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
+            label="信用卡 / 金融卡" @click="prompt1 = true" />
+        </div>
+        <div class="col">
+          <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
+            label="LINE PAY / 街口支付" @click="prompt2 = true" />
+        </div>
+        <div class="col">
+          <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
+            label="ATM 轉帳" @click="prompt3 = true" />
+        </div>
       </div>
 
       <!-- 信用卡 / 金融卡付款 -->
@@ -341,17 +421,24 @@ const cartcolumns = [
   {
     name: 'image',
     required: true,
-    label: '商品圖片',
+    label: '圖片',
     align: 'left'
     // btn 在 template #body-cell-image 加入
   },
   {
     name: 'product',
     required: true,
-    label: '購買商品',
+    label: '行程',
     align: 'left',
     field: row => row.product.name,
-    format: val => `${val}`,
+    sortable: true
+  },
+  {
+    name: 'product_date',
+    required: true,
+    label: '行程日期',
+    align: 'left',
+    field: row => row.product.name,
     sortable: true
   },
   {
@@ -360,7 +447,7 @@ const cartcolumns = [
     label: '購買數量',
     align: 'left',
     field: row => row.quantity,
-    format: val => `${val}`
+    sortable: true
   },
   {
     name: 'price',
@@ -368,7 +455,6 @@ const cartcolumns = [
     label: '價錢',
     align: 'left',
     field: row => row.product.price,
-    format: val => `${val}`,
     sortable: true
   },
   {

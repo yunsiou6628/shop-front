@@ -267,60 +267,75 @@ gsap.registerPlugin(ScrollTrigger)
 
 const scrolldata = {
   start: 'top 0',
-  end: 'bottom 50',
+  end: 'bottom 0',
   scrub: true,
-  trigger: '#mainbanner'
-  // markers: true
+  trigger: '#mainbanner',
+  markers: true
 }
 
 onMounted(() => {
-  // gsap.to('#banner2', {
-  //   scrollTrigger: scrolldata,
-  //   top: 400,
-  //   left: -800
-  // })
+  gsap.to('#mainbanner', {
+    scrollTrigger: scrolldata,
+    backgroundPosition: 'center -300px'
+  })
+
+  gsap.to('#banner2', {
+    scrollTrigger: scrolldata,
+    top: 400,
+    left: -800,
+    y: 1000
+  })
   gsap.to('#banner3', {
     scrollTrigger: scrolldata,
     top: 400,
-    left: 800
+    left: 800,
+    y: 1000
   })
-  gsap.to('#banner4', {
-    scrollTrigger: scrolldata,
-    left: 6000
-  })
-  gsap.to('#banner5', {
-    scrollTrigger: scrolldata,
-    left: -2000
-  })
+
   gsap.to('#gohiking', {
     scrollTrigger: scrolldata,
-    top: 1000,
-    scale: 0.5
+    top: '100%',
+    scale: 0.3
+  })
+
+  // 近的雲
+  gsap.to('#banner4', {
+    x: window.innerWidth,
+    duration: 40,
+    repeat: -1
+  })
+
+  // 遠的雲
+  gsap.to('#banner5', {
+    x: -window.innerWidth * 2,
+    duration: 60,
+    ease: 'none',
+    repeat: -1
+  })
+
+  window.addEventListener('mousemove', function (e) {
+    // console.log('x:' + -(e.pageX - window.innerWidth / 2))
+
+    // console.log('X:' + numX)
+    // console.log('Y:' + numY)
+    // const numnum = (parseInt(((e.pageX - window.innerWidth / 2) / 50) - ((e.pageY - window.innerHeight / 2) / 50)))
+    // console.log(numnum)
+    // gsap.set('#banner2', {
+    //   X: numX
+    // })
+    // 20 + '%'
+    //  10 + '%'
+    const speed = 10
+    gsap.set('#gohiking', {
+      x: (e.pageX - window.innerWidth / 2) / speed,
+      y: (e.pageY - window.innerHeight / 2) / speed
+      // top: 20 + '%-' + numX,
+      // left: 10 + '%-' + numY
+    })
   })
 })
 
 // 監聽滑鼠移動
-window.addEventListener('mousemove', function (e) {
-  // console.log('x:' + -(e.pageX - window.innerWidth / 2))
-
-  const numX = ((e.pageX - window.innerWidth / 2) / 500)
-  // console.log('X:' + numX)
-  const numY = ((e.pageY - window.innerHeight / 2) / 50)
-  // console.log('Y:' + numY)
-  // const numnum = (parseInt(((e.pageX - window.innerWidth / 2) / 50) - ((e.pageY - window.innerHeight / 2) / 50)))
-  // console.log(numnum)
-  // gsap.set('#banner2', {
-  //   X: numX
-  // })
-  // 20 + '%'
-  //  10 + '%'
-  gsap.set('#gohiking', {
-    xPercent: numX,
-    yPercent: numY
-    // top: 20 + '%-' + numX,
-    // left: 10 + '%-' + numY
-  })
-})
 
 // 滑鼠監聽事件
 // window.addEventListener('mousemove', function (e) {

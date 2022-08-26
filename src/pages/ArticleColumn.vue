@@ -43,13 +43,13 @@
   </q-responsive>
 
   <!-- 中尺寸和大尺寸 -->
-  <div class="gt-sm q-pa-md q-py-xl row justify-center content-center items-center q-gutter-lg" style="color: #5E8A4B;">
+  <div class="gt-sm q-pa-md q-py-xl row justify-center content-center items-center q-gutter-lg text-grey-7">
     <div class="col-md-10 col-lg-5">
       <div class="col-6 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>帶隊鬼故事</span>
       </div>
-      <q-card class="my-card col-4" flat bordered style="height:350px;">
-        <q-card-section horizontal class="full-height col-12">
+      <q-card class="my-card col-4" flat bordered full-height style="height:100%;">
+        <q-card-section horizontal class="col-12">
           <div class="col-6 q-pa-lg">
             <span>關於 ⟪帶隊鬼故事⟫</span><br><br>
             <span>在 ⟪帶隊鬼故事⟫ 中，不講怪力亂神，因為山林自有靈，彼此互相尊重就好，這裡將著重在帶隊過程中所遇到的特別案例。</span><br><br>
@@ -70,8 +70,8 @@
       <div class="col-6 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>她與她的山友們</span>
       </div>
-      <q-card class="my-card col-4" flat bordered style="height:350px;">
-        <q-card-section horizontal class="full-height col-12">
+      <q-card class="my-card col-4" flat bordered full-height style="height:100%;">
+        <q-card-section horizontal class="col-12">
           <div class="col-6 q-pa-lg">
             <span>每趟山行中，總會問身旁的隊友，記不記得第一次爬山的感受？</span><br><br>
             <span>他們說，記得記得，第一次登頂就白牆一片，身體打著哆嗦，配著頭痛欲裂，慌慌張張、匆匆忙忙的就趕下山了。好虐人。</span><br><br>
@@ -92,8 +92,8 @@
       <div class="col-6 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>登山知識</span>
       </div>
-      <q-card class="my-card col-4" flat bordered style="height:350px;">
-        <q-card-section horizontal class="full-height col-12">
+      <q-card class="my-card col-4" flat bordered full-height style="height:100%;">
+        <q-card-section horizontal class="col-12">
           <div class="col-6 q-pa-lg">
             <span>如何避免迷途發生，就必須要先建立正確的登山心態，其核心就是理解「登山是風險管理的運動」，並將這樣的觀念實踐於登山歷程。</span><br><br>
             <span>登山前的準備，可以說是確保登山活動安全的根本，卻也是許多人最容易輕忽的部分，尤其容易發生在熱門、或是網路上瘋傳的路線，美麗的山林畫面、自我挑戰的誘因，讓許多可能並不熟悉登山活動的人也慕名前往，卻未做好相應的準備...</span><br><br>
@@ -112,8 +112,8 @@
       <div class="col-6 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>裝備推薦</span>
       </div>
-      <q-card class="my-card col-4" flat bordered style="height:350px;">
-        <q-card-section horizontal class="full-height col-12">
+      <q-card class="my-card col-4" flat bordered full-height style="height:100%;">
+        <q-card-section horizontal class="col-12">
           <div class="col-6 q-pa-lg">
             <span>登山前的準備，除了基本的體力與擬定登山計畫以外，最重要的就是備妥登山道具了。目前市面上的登山道具百百種，提供一些適合入門者購買的清單當作參考，部分用品可視情況斟酌選購。</span><br><br>
             <span>另外，除了讓你更清楚有哪些必備物品以外，更重要的是在看完之後，你會了解「為什麼要帶這樣東西上山」，進而學習依據不同的行程，調整帶上山的裝備。</span><br><br><br>
@@ -132,12 +132,12 @@
   </div>
 
   <!-- 小尺寸 -->
-  <div class="lt-md q-pa-xl column justify-center content-center items-center q-gutter-lg" style="color: #5E8A4B;">
+  <div class="lt-md q-pa-xl column justify-center content-center items-center q-gutter-lg text-grey-7">
     <div class="col-12">
       <div class="col-6 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>帶隊鬼故事</span>
       </div>
-      <q-card class="my-card col-12" flat bordered style="height:350px;">
+      <q-card class="my-card col-12" flat bordered style="height:100%;">
         <q-img class="col-12" :ratio="4 / 3" src="https://i.imgur.com/uzJHT8E.jpg" />
         <q-card-section horizontal class="full-height col-12  column">
           <div class="col-6 q-pa-lg">
@@ -159,7 +159,7 @@
       <div class="col-6 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>她與她的山友們</span>
       </div>
-      <q-card class="my-card col-4" flat bordered style="height:350px;">
+      <q-card class="my-card col-4" flat bordered style="height:3100%">
         <q-card-section horizontal class="full-height col-12 column">
           <q-img class="col-6" :ratio="4 / 3" src="https://i.imgur.com/uzJHT8E.jpg" />
           <div class="col-6 q-pa-lg">
@@ -181,7 +181,7 @@
       <div class="col-6 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>登山知識</span>
       </div>
-      <q-card class="my-card col-4" flat bordered style="height:350px;">
+      <q-card class="my-card col-4" flat bordered style="height:100%;">
         <q-card-section horizontal class="full-height col-12 column">
           <q-img class="col-6" :ratio="4 / 3" src="https://i.imgur.com/uzJHT8E.jpg" />
           <div class="col-6 q-pa-lg">
@@ -201,7 +201,7 @@
       <div class="col-6 text-h4 text-weight-bolder q-ma-xl text-center">
         <span>裝備推薦</span>
       </div>
-      <q-card class="my-card col-4" flat bordered style="height:350px;">
+      <q-card class="my-card col-4" flat bordered style="height:100%;">
         <q-card-section horizontal class="full-height col-12 column">
           <q-img class="col-6" :ratio="4 / 3" src="https://i.imgur.com/uzJHT8E.jpg" />
           <div class="col-6 q-pa-lg">

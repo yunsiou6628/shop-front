@@ -187,7 +187,6 @@ const cartcolumns = [
     label: '行程',
     align: 'left',
     field: row => row.product.name,
-    format: val => `${val}`,
     sortable: true
   },
   {
@@ -196,7 +195,6 @@ const cartcolumns = [
     label: '行程日期',
     align: 'left',
     field: row => row.product.name,
-    format: val => `${val}`,
     sortable: true
   },
   {
@@ -205,7 +203,7 @@ const cartcolumns = [
     label: '購買數量',
     align: 'left',
     field: row => row.quantity,
-    format: val => `${val}`
+    sortable: true
   },
   {
     name: 'price',
@@ -213,7 +211,6 @@ const cartcolumns = [
     label: '價錢',
     align: 'left',
     field: row => row.product.price,
-    format: val => `${val}`,
     sortable: true
   },
   {
@@ -222,7 +219,6 @@ const cartcolumns = [
     label: '小計',
     align: 'left',
     field: row => row.product.price * row.quantity,
-    // format: val => `${val}`,
     sortable: true
   },
   {
