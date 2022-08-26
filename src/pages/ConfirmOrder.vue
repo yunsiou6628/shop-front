@@ -150,7 +150,7 @@
               <div class="q-py-xs text-weight-bold text-h6">行程名稱 : {{ cart.product.name }}</div>
               <div class="q-py-xs text-weight-bold text-h6">
                 <!-- {{ cart.product.product_date }} -->
-                報名日期 :
+                行程日期 :
                 {{ new Date(cart.product.product_date.from).toLocaleDateString()
                 }} ~ {{ new Date(cart.product.product_date.to).toLocaleDateString() }}
               </div>

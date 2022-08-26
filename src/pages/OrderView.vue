@@ -3,7 +3,70 @@ OrderView
   <div class="q-pa-xl"
     style="width:100vw; height: 100vh; background-image: linear-gradient(to bottom,#F4F8EE, #fff); z-index: -1;">
     <div class="col-12">
-      <q-table title="購物清單" :rows="orders" :columns="orderscolumns" row-key="name" hide-pagination>
+      <q-table :grid="$q.screen.lt.md" title="購物清單" :rows="orders" :columns="orderscolumns" row-key="name"
+        hide-pagination>
+
+        <!-- 未完成 ------------------------------------------------------------ -->
+        <template v-slot:item="card">
+
+          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold" style=" color: #5E8A4B;">
+            <!-- <pre>{{ card }}</pre> -->
+            <div v-for="col in card.cols" :key="col.name">
+
+              <div v-if="col.name === 'image'">
+                <!-- {{ card.row.product.image }} -->
+                <div img="img">
+                  <img :src="card.row.product.image" style="width:100%">
+                </div>
+              </div>
+
+              <div class="q-ma-lg">
+                <div v-if="col.name === 'product'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'product_date'">
+                  <!-- <div>{{ card.row.product.product_date.from }} ~ {{ card.row.product.product_date.to }}</div> -->
+                  <div>{{ col.label }} : {{ new Date(card.row.product.product_date.from).toLocaleDateString() }} ~ {{
+                      new
+                        Date(card.row.product.product_date.to).toLocaleDateString()
+                  }} </div>
+                </div>
+
+                <div v-if="col.name === 'quantity'">
+                  <!-- {{ card.row.quantity }} -->
+                  <div class="row">
+                    <div class="col-3" style="margin: auto 0 ">{{ col.label }} : </div>
+                    <div :btn="btn" class="col-7">
+                      <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity - 1)" style="width: 10%;">-
+                      </q-btn>
+                      <span class="q-px-lg">{{ card.row.quantity }}</span>
+                      <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity + 1)" style="width: 10%;">+
+                      </q-btn>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if="col.name === 'price'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'subtotal'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'btn'" class="row justify-center">
+                  <div :btn="btn">
+                    <q-btn @click="updateCart(card.rowIndex, 0)">刪除</q-btn>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </q-card>
+        </template>
+        <!-- 未完成 ------------------------------------------------------------ -->
 
         <template #body-cell-image="image">
           <!-- <pre>{{image.row.products[0].product}}</pre> -->
