@@ -8,7 +8,7 @@
 
         <template v-slot:item="card">
 
-          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold" style=" color: #5E8A4B;">
+          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold text-grey-7">
             <!-- <pre>{{ card }}</pre> -->
             <div v-for="col in card.cols" :key="col.name">
 
@@ -20,7 +20,11 @@
               </div>
 
               <div class="q-ma-lg">
-                <div v-if="col.name === 'product'">
+                <div v-if="col.name === '_id'">
+                  <div>{{ col.label }} : {{ col.value }}</div>
+                </div>
+
+                <div v-if="col.name === 'name'">
                   <div>{{ col.label }} : {{ col.value }}</div>
                 </div>
 
@@ -142,12 +146,21 @@
 
     <q-step :name="3" title="付款" icon="assignment" :done="step > 3">
       <div class="row justify-center content-center">
-        <q-card class="q-pa-lg q-px-lg-xl 7">
+        <q-card class="q-pa-lg q-px-lg-xl text-grey-7">
           <div class=" q-px-sm-xl" style="width: 100%;">
             <div class=" text-h6 text-weight-bold q-py-md">商品明細 :</div>
+
+            <!-- 分隔線 -->
+            <div class="col-12 row justify-center q-pb-lg">
+              <q-separator style="width:100%" />
+            </div>
+
             <div v-for="(cart, idx) in cart" :key="idx" class="text-weight-bold">
               <!-- <pre>{{cart}}</pre> -->
+
+              <div class="q-py-xs text-weight-bold text-h6">訂單編號 : {{ cart.product._id }}</div>
               <div class="q-py-xs text-weight-bold text-h6">行程名稱 : {{ cart.product.name }}</div>
+
               <div class="q-py-xs text-weight-bold text-h6">
                 <!-- {{ cart.product.product_date }} -->
                 行程日期 :
@@ -156,34 +169,41 @@
               </div>
 
               <div class="q-py-xs text-weight-bold text-h6">金額 : $ {{ cart.product.price }}</div>
+
+              <!-- 分隔線 -->
+              <div class="col-12 row justify-center q-py-lg">
+                <q-separator style="width:100%" />
+              </div>
+
             </div>
-            <div class="q-py-lg text-weight-bold text-h6">匯款金額總計 : $ {{ totalPrice }}</div>
+
+            <div class="q-py-md text-weight-bold text-h6">匯款金額總計 : $ {{ totalPrice }}</div>
           </div>
         </q-card>
       </div>
 
       <div class="text-h5 q-pa-xl text-weight-bold text-center" style="color: #5E8A4B;">- 請選擇付款方式 -</div>
       <!-- 判斷3個選擇其中一個資料 ------------------------------------------------------------------------------- -->
-      <div class="row justify-center content-center text-center bg-yellow q-px-lg-xl q-mx-lg-xl">
-        <div class="col-12 col-lg-4">
-          <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
-            label="信用卡 / 金融卡" @click="prompt1 = true" />
+      <div class="row justify-center content-center text-center q-px-lg-xl q-mx-lg-xl">
+        <div class="col-9 col-lg-3 q-mx-lg-md">
+          <q-btn class="q-px-xs q-py-xl q-my-md text-weight-bold text-h6"
+            style="width: 100%; background: #F4F8EE; color: #5E8A4B;" label="信用卡 / 金融卡" @click="prompt1 = true" />
         </div>
-        <div class="col-12 col-lg-4">
-          <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
-            label="LINE PAY / 街口支付" @click="prompt2 = true" />
+        <div class="col-9 col-lg-3 q-mx-lg-md">
+          <q-btn class="q-px-xs q-py-xl q-my-md text-weight-bold text-h6"
+            style="width: 100%; background: #F4F8EE; color: #5E8A4B;" label="LINE PAY / 街口支付" @click="prompt2 = true" />
         </div>
-        <div class="col-12 col-lg-4">
-          <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
-            label="ATM 轉帳" @click="prompt3 = true" />
+        <div class="col-9 col-lg-3 q-mx-lg-md">
+          <q-btn class="q-px-xs q-py-xl q-my-md text-weight-bold text-h6"
+            style="width: 100%; background: #F4F8EE; color: #5E8A4B;" label="ATM 轉帳" @click="prompt3 = true" />
         </div>
       </div>
 
       <!-- 信用卡 / 金融卡付款 -->
       <q-dialog v-model="prompt1" persistent>
-        <q-card style="min-width: 700px; color: #5E8A4B;">
+        <q-card style="width: 100%; color: #5E8A4B;">
           <q-card-section>
-            <div class="text-h5 q-pt-xl q-px-xl text-weight-bold text-center">信用卡 / 金融卡付款</div>
+            <div class="text-h5 q-pt-xs q-px-xl text-weight-bold text-center">信用卡 / 金融卡付款</div>
           </q-card-section>
 
           <!-- input 表單內容 -->
@@ -234,20 +254,24 @@
 
       <!-- LINE PAY / 街口支付付款 -->
       <q-dialog v-model="prompt2" persistent>
-        <q-card style="min-width: 700px">
+        <q-card style="width: 100%;">
           <q-card-section>
-            <div class="text-h5 q-pt-xl q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">LINE PAY /
+            <div class="text-h5 q-pt-sm q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">LINE PAY /
               街口支付付款
             </div>
           </q-card-section>
 
           <!-- input 表單內容 -->
           <q-card-section class="q-pt-none row justify-center">
-            <img src="https://i.imgur.com/zYSuY0R.jpg" style="width: 300px; height: 300px;">
-            <img src="https://i.imgur.com/FCWWR7R.jpg" style="width: 300px; height: 300px;">
+            <div class="col-8 col-lg-5">
+              <img src="https://i.imgur.com/zYSuY0R.jpg" style="width: 100%; height: 100%;">
+            </div>
+            <div class="col-8 col-lg-5">
+              <img src="https://i.imgur.com/FCWWR7R.jpg" style="width: 100%; height: 100%;">
+            </div>
           </q-card-section>
 
-          <div class="text-h5 q-pt-xl q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">核對付款資料</div>
+          <div class="text-h5 q-pt-sm q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">核對付款資料</div>
           <q-card-section class="q-pt-none column justify-center">
             <div class="q-pt-md">
               <q-select outlined dense autofocus v-model="confirmform.checkPay" :options="payoptions" label="付款方式"
@@ -271,24 +295,26 @@
 
       <!-- ATM 轉帳付款 -->
       <q-dialog v-model="prompt3" persistent>
-        <q-card style="min-width: 700px">
+        <q-card style="width: 100%;">
 
           <q-card-section>
-            <div class="text-h5 q-pa-xl text-weight-bold text-center" style="color: #5E8A4B;">ATM 轉帳付款</div>
+            <div class="text-h5 q-pt-sm q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">ATM 轉帳付款
+            </div>
             <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">轉帳資料</div>
-            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">銀行代號 : 013(代碼)</div>
-            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">銀行名 : 國泰世華銀行(假設)</div>
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">銀行代碼 : 700</div>
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">銀行名 : 中華郵政</div>
             <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">轉帳帳號 :
               0000-0000-2222-1111</div>
             <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">轉帳金額 : {{ totalPrice }}
             </div>
-            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">繳款期限：2022年09月10日13點以前
+            <div class="q-px-xl text-weight-bold text-subtitle2 column" style="color: #5E8A4B;">
+              繳款期限：2022年09月10日13點以前<br>
               (一周內若無繳費自動取消訂單)
             </div>
           </q-card-section>
 
           <!-- input 表單內容 -->
-          <div class="text-h5 q-pt-xl q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">核對 ATM 轉帳資料
+          <div class="text-h5 q-pt-sm q-pb-md q-px-xl text-weight-bold text-center" style="color: #5E8A4B;">核對 ATM 轉帳資料
           </div>
           <q-card-section class="q-pt-none row-8 justify-center">
             <div class="q-pt-md">
@@ -337,6 +363,7 @@
     </q-step>
 
     <q-step :name="4" title="完成" icon="fa-solid fa-clipboard-check">
+      <div>hihihihiihihiihihihihihi</div>
     </q-step>
 
     <template v-slot:navigation>
@@ -347,7 +374,7 @@
         <!-- <q-btn v-else @click="finishConfirm" color="primary" label="結帳" /> -->
         <!-- btn 跳頁 => <q-btn to="/"/> -->
 
-        <q-btn v-else @click='user.checkout(confirmform)' :disabled='!canCheckout' :btn="btn" label="結帳"
+        <q-btn v-if="step == 3" @click='checkout(confirmform)' :disabled='!canCheckout' :btn="btn" label="結帳"
           style="color: #fff; background: #5E8A4B;"></q-btn>
 
       </q-stepper-navigation>
@@ -361,12 +388,14 @@
 // 寫 送出表單到後台 function (有點像 post 註冊資料傳後台)
 
 import { reactive, ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import Swal from 'sweetalert2'
 import { apiAuth } from '../boot/axios'
 import { useUserStore } from '../stores/example-store'
 
 const user = useUserStore()
 const cart = reactive([])
+const router = useRouter()
 const step = ref(1)
 // 付款方式 prompt
 const prompt1 = ref(false)
@@ -426,9 +455,17 @@ const cartcolumns = [
     // btn 在 template #body-cell-image 加入
   },
   {
-    name: 'product',
+    name: '_id',
     required: true,
-    label: '行程',
+    label: '訂單編號',
+    align: 'left',
+    field: row => row.product._id,
+    sortable: true
+  },
+  {
+    name: 'name',
+    required: true,
+    label: '行程名稱',
     align: 'left',
     field: row => row.product.name,
     sortable: true
@@ -438,7 +475,6 @@ const cartcolumns = [
     required: true,
     label: '行程日期',
     align: 'left',
-    field: row => row.product.name,
     sortable: true
   },
   {
@@ -463,7 +499,6 @@ const cartcolumns = [
     label: '小計',
     align: 'left',
     field: row => row.product.price * row.quantity,
-    // format: val => `${val}`,
     sortable: true
   },
   {
@@ -524,6 +559,13 @@ const confirmform = reactive({
   atmcheckAccount: '',
   atmcheckDay: ''
 })
+
+// 換頁
+const checkout = (confirmform) => {
+  user.checkout(confirmform)
+  // step.value++
+  router.push('/OrderView/')
+}
 
 const rules = reactive({
   name: [

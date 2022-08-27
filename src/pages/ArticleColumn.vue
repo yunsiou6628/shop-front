@@ -56,8 +56,11 @@
             <span>為講求真實性，故事中僅有名字會做化名處理，其餘發生地點和過程會如實描述，你讀到的將不只是一則登山故事，更是一位位愛山的人，想一起推動的登山觀念。</span><br><br><br>
 
             <div class="q-pa-md row justify-center content-center items-center">
-              <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+              <q-btn label="Read More" class="col-auto "
                 style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
+                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
               </q-btn>
             </div>
           </div>
@@ -78,8 +81,11 @@
             <span>「那麼，為什麼又上山呢？」 因為，喜歡上這種自虐的感覺啊。話一說完，我們忍不住大笑，因為這是所有愛山人的特質。</span><br><br>
 
             <div class="q-pa-md row justify-center content-center items-center">
-              <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+              <q-btn label="Read More" class="col-auto "
                 style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
+                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
               </q-btn>
             </div>
           </div>
@@ -98,8 +104,11 @@
             <span>如何避免迷途發生，就必須要先建立正確的登山心態，其核心就是理解「登山是風險管理的運動」，並將這樣的觀念實踐於登山歷程。</span><br><br>
             <span>登山前的準備，可以說是確保登山活動安全的根本，卻也是許多人最容易輕忽的部分，尤其容易發生在熱門、或是網路上瘋傳的路線，美麗的山林畫面、自我挑戰的誘因，讓許多可能並不熟悉登山活動的人也慕名前往，卻未做好相應的準備...</span><br><br>
             <div class="q-pa-md row justify-center content-center items-center">
-              <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+              <q-btn label="Read More" class="col-auto "
                 style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
+                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
               </q-btn>
             </div>
           </div>
@@ -119,8 +128,11 @@
             <span>另外，除了讓你更清楚有哪些必備物品以外，更重要的是在看完之後，你會了解「為什麼要帶這樣東西上山」，進而學習依據不同的行程，調整帶上山的裝備。</span><br><br><br>
 
             <div class="q-pa-md row justify-center content-center items-center">
-              <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+              <q-btn label="Read More" class="col-auto "
                 style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
+                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
               </q-btn>
             </div>
           </div>
@@ -146,8 +158,11 @@
             <span>為講求真實性，故事中僅有名字會做化名處理，其餘發生地點和過程會如實描述，你讀到的將不只是一則登山故事，更是一位位愛山的人，想一起推動的登山觀念。</span><br><br>
 
             <div class="q-pa-md row justify-center content-center items-center">
-              <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+              <q-btn label="Read More" class="col-auto "
                 style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
+                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
               </q-btn>
             </div>
           </div>
@@ -168,8 +183,11 @@
             <span>「那麼，為什麼又上山呢？」 因為，喜歡上這種自虐的感覺啊。話一說完，我們忍不住大笑，因為這是所有愛山人的特質。</span><br><br>
 
             <div class="q-pa-md row justify-center content-center items-center">
-              <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+              <q-btn label="Read More" class="col-auto "
                 style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
+                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
               </q-btn>
             </div>
           </div>
@@ -188,8 +206,11 @@
             <span>如何避免迷途發生，就必須要先建立正確的登山心態，其核心就是理解「登山是風險管理的運動」，並將這樣的觀念實踐於登山歷程。</span><br><br>
             <span>登山前的準備，可以說是確保登山活動安全的根本，卻也是許多人最容易輕忽的部分，尤其容易發生在熱門、或是網路上瘋傳的路線，美麗的山林畫面、自我挑戰的誘因，讓許多可能並不熟悉登山活動的人也慕名前往，卻未做好相應的準備...</span><br><br>
             <div class="q-pa-md row justify-center content-center items-center">
-              <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+              <q-btn label="Read More" class="col-auto "
                 style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
+                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
               </q-btn>
             </div>
           </div>
@@ -209,8 +230,11 @@
             <span>另外，除了讓你更清楚有哪些必備物品以外，更重要的是在看完之後，你會了解「為什麼要帶這樣東西上山」，進而學習依據不同的行程，調整帶上山的裝備。</span><br><br><br>
 
             <div class="q-pa-md row justify-center content-center items-center">
-              <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+              <q-btn label="Read More" class="col-auto "
                 style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
+                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
               </q-btn>
             </div>
           </div>

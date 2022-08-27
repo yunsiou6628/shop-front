@@ -87,13 +87,13 @@
         <div class="col-12 column justify-center content-center items-center q-py-xl" id="indexImg-xs">
           <img
             src="https://kitpro.site/hayka/wp-content/uploads/sites/75/2022/03/hiking-sunrise-2022-03-05-20-21-43-utc-800x533.jpg"
-            style="width: 420px; height: 300px; border: 10px solid white; margin: 10px 0; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+            style="width: 400px; height: 280px; border: 10px solid white; margin: 10px 0; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
           <img
             src="https://kitpro.site/hayka/wp-content/uploads/sites/75/2022/03/female-hiker-looking-up-in-forest-sarsy-village-2022-03-07-23-58-37-utc.jpg"
-            style="width: 420px; height: 300px; border: 10px solid white ; margin: 10px 0; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+            style="width: 400px; height: 280px; border: 10px solid white ; margin: 10px 0; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
           <img
             src="https://kitpro.site/hayka/wp-content/uploads/sites/75/2022/03/hikers-uphilling-at-mountain-forest-back-view-2021-08-29-03-30-49-utc-800x550.jpg"
-            style="width: 420px; height: 300px; border: 10px solid white ; margin: 10px 0; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+            style="width: 400px; height: 280px; border: 10px solid white ; margin: 10px 0; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
         </div>
       </div>
     </div>

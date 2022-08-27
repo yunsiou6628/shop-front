@@ -1,50 +1,44 @@
 OrderView
 <template>
   <div class="q-pa-xl"
-    style="width:100vw; height: 100vh; background-image: linear-gradient(to bottom,#F4F8EE, #fff); z-index: -1;">
+    style="width:100%; height: 100%; background-image: linear-gradient(to bottom,#F4F8EE, #fff); z-index: -1;">
     <div class="col-12">
-      <q-table :grid="$q.screen.lt.md" title="購物清單" :rows="orders" :columns="orderscolumns" row-key="name"
-        hide-pagination>
+      <q-table :grid="$q.screen.lt.md" title="購買清單" :rows="orders" :columns="orderscolumns" row-key="name"
+        :filter="filter" style=" color: #5E8A4B;">
 
-        <!-- 未完成 ------------------------------------------------------------ -->
         <template v-slot:item="card">
-
-          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold" style=" color: #5E8A4B;">
+          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold text-grey-7">
             <!-- <pre>{{ card }}</pre> -->
+
             <div v-for="col in card.cols" :key="col.name">
 
               <div v-if="col.name === 'image'">
-                <!-- {{ card.row.product.image }} -->
                 <div img="img">
-                  <img :src="card.row.product.image" style="width:100%">
+                  <!-- <pre>{{ card.row.products[0].product.image }}</pre> -->
+                  <img :src="card.row.products[0].product.image" style="width:100%">
                 </div>
               </div>
 
               <div class="q-ma-lg">
-                <div v-if="col.name === 'product'">
+                <div v-if="col.name === '_id'">
+                  <div>訂單編號 : {{ card.row.products[0].product._id }}</div>
+                </div>
+
+                <div v-if="col.name === 'name'">
+                  <!-- 行程名稱 -->
                   <div>{{ col.label }} : {{ col.value }}</div>
                 </div>
 
                 <div v-if="col.name === 'product_date'">
                   <!-- <div>{{ card.row.product.product_date.from }} ~ {{ card.row.product.product_date.to }}</div> -->
-                  <div>{{ col.label }} : {{ new Date(card.row.product.product_date.from).toLocaleDateString() }} ~ {{
-                      new
-                        Date(card.row.product.product_date.to).toLocaleDateString()
-                  }} </div>
+                  <div>
+                    {{ col.label }} : {{ new Date(card.row.products[0].product.product_date.from).toLocaleDateString()
+                    }} ~ {{ new Date(card.row.products[0].product.product_date.to).toLocaleDateString() }}
+                  </div>
                 </div>
 
                 <div v-if="col.name === 'quantity'">
-                  <!-- {{ card.row.quantity }} -->
-                  <div class="row">
-                    <div class="col-3" style="margin: auto 0 ">{{ col.label }} : </div>
-                    <div :btn="btn" class="col-7">
-                      <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity - 1)" style="width: 10%;">-
-                      </q-btn>
-                      <span class="q-px-lg">{{ card.row.quantity }}</span>
-                      <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity + 1)" style="width: 10%;">+
-                      </q-btn>
-                    </div>
-                  </div>
+                  <div>{{ col.label }} : {{ col.value }}</div>
                 </div>
 
                 <div v-if="col.name === 'price'">
@@ -55,10 +49,8 @@ OrderView
                   <div>{{ col.label }} : {{ col.value }}</div>
                 </div>
 
-                <div v-if="col.name === 'btn'" class="row justify-center">
-                  <div :btn="btn">
-                    <q-btn @click="updateCart(card.rowIndex, 0)">刪除</q-btn>
-                  </div>
+                <div v-if="col.name === 'date'">
+                  <div>{{ col.label }} : {{ new Date(card.row.date).toLocaleDateString() }}</div>
                 </div>
 
               </div>
@@ -66,26 +58,35 @@ OrderView
             </div>
           </q-card>
         </template>
-        <!-- 未完成 ------------------------------------------------------------ -->
 
         <template #body-cell-image="image">
-          <!-- <pre>{{image.row.products[0].product}}</pre> -->
-          <img :src="image.row.products[0].product.image" style="width:150px">
+          <q-td :img="img">
+            <img :src="image.row.products[0].product.image" style="width:150px">
+          </q-td>
         </template>
 
-        <template #body-cell-product_date="product_date">
-          <!-- <pre>{{product_date.row.products[0].product}}</pre> -->
-          <!-- <pre>{{product_date.row.products[0].product.product_date}}</pre> -->
-          {{ new Date(product_date.row.products[0].product.product_date).toLocaleDateString() }}
+        <template #body-cell-product_date="all">
+          <q-td :product_date="product_date">
+            {{ new Date(all.row.products[0].product.product_date.from).toLocaleDateString()
+            }} ~ {{ new Date(all.row.products[0].product.product_date.to).toLocaleDateString() }}
+          </q-td>
+        </template>
+
+        <template #body-cell-date="all">
+          <q-td :date="date">
+            <!-- <pre>{{ all.row.date }}</pre> -->
+            {{ new Date(all.row.date).toLocaleDateString() }}
+          </q-td>
         </template>
 
       </q-table>
+
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import Swal from 'sweetalert2'
 import { apiAuth } from '../boot/axios'
 
@@ -96,9 +97,16 @@ const orderscolumns = [
   {
     name: 'image',
     required: true,
-    label: '商品圖片',
+    label: '圖片',
     align: 'left'
-    // btn 在 template #body-cell-image 加入
+  },
+  {
+    name: '_id',
+    required: true,
+    label: '訂單編號',
+    align: 'left',
+    field: row => row.products[0].product._id,
+    sortable: true
   },
   {
     name: 'name',
@@ -120,18 +128,39 @@ const orderscolumns = [
     required: true,
     label: '購買數量',
     align: 'left',
-    field: row => row.products[0].product.quantity,
+    field: row => row.products[0].quantity,
+    sortable: true
+  },
+  {
+    name: 'price',
+    required: true,
+    label: '價錢',
+    align: 'left',
+    field: row => row.products[0].product.price,
+    sortable: true
+  },
+  {
+    name: 'subtotal',
+    required: true,
+    label: '小計金額',
+    align: 'left',
+    field: row => row.products[0].product.price * row.products[0].quantity,
+    sortable: true
+  },
+  {
+    name: 'date',
+    required: true,
+    label: '下訂單日期',
+    align: 'left',
     sortable: true
   }
 ]
 
 const init = async () => {
   try {
-    console.log(111)
     const { data } = await apiAuth.get('/orders/getMyOrders')
-    console.log(222)
     orders.push(...data.result)
-    console.log(orders)
+    // console.log(orders)
   } catch (error) {
     Swal.fire({
       icon: 'error',

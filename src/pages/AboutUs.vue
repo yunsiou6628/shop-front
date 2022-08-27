@@ -105,19 +105,17 @@
         </div>
         <!--圖 -->
         <div class="row col-12 q-px-xxxl q-pt-lg" :ratio="4 / 3">
-          <!-- <q-img src="https://i.imgur.com/Q86hstq.jpg" style=" height: 100%;" /> -->
-
-          <div class="col-3 text-center q-py-xs">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
+          <div class="col-3 text-center q-py-xs q-px-md">
+            <q-img src="../assets/291522346_119858150755501_1221295923618493252_n.jpg" style="width: 100%;" />
           </div>
-          <div class="col-3 text-center q-py-xxxl">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
+          <div class="col-3 text-center q-py-xxxl q-px-md">
+            <q-img src="../assets/img1.jpg" style="width: 100%;" />
           </div>
-          <div class="col-3 text-center q-py-xs">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
+          <div class="col-3 text-center q-py-xs q-px-md">
+            <q-img src="../assets/img1.jpg" style="width: 100%;" />
           </div>
-          <div class="col-3 text-center q-py-xxxl">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
+          <div class="col-3 text-center q-py-xxxl q-px-md">
+            <q-img src="../assets/img1.jpg" style="width: 100%;" />
           </div>
         </div>
       </div>
@@ -206,22 +204,18 @@
           <q-separator style="width:90%" />
         </div>
         <!--圖 -->
-        <div class="row col-12 justify-center content-center items-center" :ratio="4 / 3">
-
-          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
+        <div class="row col-12 q-px-xxxl justify-center content-center items-center" :ratio="4 / 3">
+          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm q-px-sm">
+            <q-img src="../assets/291522346_119858150755501_1221295923618493252_n.jpg" style="width: 100%;" />
           </div>
-          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
+          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm q-px-sm">
+            <q-img src="../assets/img1.jpg" style="width: 100%;" />
           </div>
-          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
+          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm q-px-sm">
+            <q-img src="../assets/img1.jpg" style="width: 100%;" />
           </div>
-          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm">
-            <q-img src="https://i.imgur.com/Sog0p4l.png" style="width: 300px;" />
+          <div class="col-12 col-sm-6 col-md-4 text-center q-py-sm q-px-sm">
+            <q-img src="../assets/img1.jpg" style="width: 100%;" />
           </div>
         </div>
       </div>

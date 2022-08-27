@@ -61,7 +61,7 @@
 
         <template v-slot:item="card">
 
-          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold" style=" color: #5E8A4B;">
+          <q-card class="col-12 q-pa-md q-my-lg text-weight-bold text-grey-7">
             <!-- <pre>{{ card }}</pre> -->
             <div v-for="col in card.cols" :key="col.name">
 
@@ -184,7 +184,7 @@ const cartcolumns = [
   {
     name: 'product',
     required: true,
-    label: '行程',
+    label: '行程名稱',
     align: 'left',
     field: row => row.product.name,
     sortable: true

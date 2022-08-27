@@ -165,7 +165,7 @@ export const useUserStore = defineStore({
         Swal.fire({
           icon: 'error',
           title: '失敗',
-          text: error
+          text: '請檢查是否有未填資料'
         })
       }
     },

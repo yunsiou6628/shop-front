@@ -96,7 +96,7 @@
     </q-page-container>
 
     <!-- footer ------------------------------------------------------------------------------------------------------------------------------------- -->
-    <q-footer style="background:transparent;">
+    <q-footer style="background:transparent; z-index: -1;">
       <div class=" col-12 relative-position">
         <!-- 底圖 -->
         <!-- 電腦大尺寸顯示 -->
