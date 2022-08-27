@@ -99,7 +99,7 @@
     </div>
 
     <div class="flex flex-center" style="width: 100%; height: 900px;">
-      <div class="row" style="width: 80%; height: 80%;">
+      <div class="row" style="width: 90%; height: 90%;">
 
         <div class="col-12 text-weight-bold" style="font-size: 18px; color: #5E8A4B; text-align: center;">
           <h3>最新行程</h3>

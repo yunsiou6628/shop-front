@@ -14,10 +14,10 @@
         <!-- btn 跳頁 => <q-btn to="/Login" label="Login"/> -->
         <!-- a 連結 跳頁 => <router-link to="/Login">Login</router-link> -->
         <!-- 這裡不加 v-model="tab"，加了 v-model 就只會顯示指定的那頁，切換條不會跟著切換頁 -->
+        <router-link name="首頁" to="/">
+          <q-img src="https://i.imgur.com/0U2S3Xo.png" style="width:100px;" />
+        </router-link>
         <q-tabs class="q-py-sm ">
-          <q-route-tab name="首頁" to="/">
-            <q-img src="https://i.imgur.com/0U2S3Xo.png" style="width:100px;" />
-          </q-route-tab>
           <q-route-tab name="登山行程" label="登山行程" to="/ProductViewAll" />
           <q-route-tab name="文章專欄" label="文章專欄" to="/ArticleColumn" />
           <q-route-tab name="關於我們" label="關於我們" to="/AboutUs" />

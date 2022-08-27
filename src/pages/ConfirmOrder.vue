@@ -165,15 +165,15 @@
       <div class="text-h5 q-pa-xl text-weight-bold text-center" style="color: #5E8A4B;">- 請選擇付款方式 -</div>
       <!-- 判斷3個選擇其中一個資料 ------------------------------------------------------------------------------- -->
       <div class="row justify-center content-center text-center bg-yellow q-px-lg-xl q-mx-lg-xl">
-        <div class="col">
+        <div class="col-12 col-lg-4">
           <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
             label="信用卡 / 金融卡" @click="prompt1 = true" />
         </div>
-        <div class="col">
+        <div class="col-12 col-lg-4">
           <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
             label="LINE PAY / 街口支付" @click="prompt2 = true" />
         </div>
-        <div class="col">
+        <div class="col-12 col-lg-4">
           <q-btn class="q-pa-xl text-weight-bold text-h6" style="width: 70%; background: #F4F8EE; color: #5E8A4B;"
             label="ATM 轉帳" @click="prompt3 = true" />
         </div>

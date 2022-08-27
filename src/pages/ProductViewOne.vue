@@ -10,7 +10,8 @@
       </q-breadcrumbs-el>
       <!-- 小分類 -->
       <q-breadcrumbs-el>
-        <pre>{{ product.category.sub }}</pre>
+        <!-- <pre>{{ product.category.sub }}</pre> -->
+        <pre>{{ categoryTitle }}</pre>
       </q-breadcrumbs-el>
     </q-breadcrumbs>
   </div>
@@ -227,6 +228,7 @@ const options = computed(() => {
 })
 
 // 初始化
+// ** reactive 在 vue 裡面要宣告物件或陣列要使用 reactive
 const product = reactive({
   _id: '',
   name: '',
@@ -250,6 +252,18 @@ const product = reactive({
   }
 })
 
+// vue 裡面一般變數(像是number、boolean、string型態)宣告的寫法
+// 不是 vue 一般的寫法 => const categoryTitle = ''
+const categoryTitle = ref('')
+
+const filterCategory = () => {
+  for (let i = 0; i < product.category.sub.length; i++) {
+    if (product.category.sub[i]._id === product.sub) {
+      categoryTitle.value = product.category.sub[i].name
+    }
+  }
+}
+
 const submit = () => {
   // if (!valid.value) return
   user.addCart({ product: product._id, quantity: quantity.value })
@@ -258,7 +272,7 @@ const submit = () => {
 const init = async () => {
   try {
     const { data } = await api.get('/products/' + route.params.id)
-    console.log('21231' + data.result)
+    // console.log('21231' + data.result)
     product._id = data.result._id
     product.name = data.result.name
     product.product_date = data.result.product_date
@@ -271,6 +285,8 @@ const init = async () => {
     product.image = data.result.image
     product.description = data.result.description
     product.bulletin = data.result.bulletin
+    // 抓完所有資料後進 filterCategory() function
+    filterCategory()
   } catch (error) {
     Swal.fire({
       icon: 'error',
