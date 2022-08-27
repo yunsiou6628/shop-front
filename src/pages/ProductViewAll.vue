@@ -27,7 +27,7 @@
             </div>
           </div>
 
-          <q-tab class="text-h6  text-weight-bolder" name="customized">客製化行程</q-tab>
+          <q-tab class="text-h6 text-weight-bolder" name="customized">客製化行程</q-tab>
 
           <!-- 原固定架構 -->
           <!-- <div class="col-12">
@@ -126,7 +126,7 @@
             </div>
 
             <!-- 行程 card -->
-            <div class="col-12 col-md-6 col-lg-4 q-pa-sm " v-for="subResult in productsubResult" :key="subResult.sub">
+            <div class="col-12 col-md-6 col-lg-4 q-pa-sm" v-for="subResult in productsubResult" :key="subResult.sub">
               <ProductCard :product='subResult' />
               <!-- 測試顯示資料 -->
               <!-- <q-card class="test-card q-pa-md q-ma-md column">

@@ -1,38 +1,9 @@
 <!-- AdminHome -->
 <template>
-<div class="q-pa-md ">
-    <div class="q-col-gutter row items-start">
-      <div class="col-6">
-        <q-img src="https://i.imgur.com/Hg84inb.jpg" style="height: 420px;">
-          <div class="absolute-full text-subtitle2 flex flex-center">
-            頁面管理
-          </div>
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img src="https://i.imgur.com/Hg84inb.jpg" style="height: 420px;">
-          <div class="absolute-full text-subtitle2 flex flex-center">
-            商品管理
-          </div>
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img src="https://i.imgur.com/Hg84inb.jpg" style="height: 420px;">
-          <div class="absolute-full text-subtitle2 flex flex-center">
-            訂單管理
-          </div>
-        </q-img>
-      </div>
-
-      <div class="col-6">
-        <q-img src="https://i.imgur.com/Hg84inb.jpg" style="height: 420px;">
-          <div class="absolute-full text-subtitle2 flex flex-center">
-            會員管理
-          </div>
-        </q-img>
-      </div>
-    </div>
+  <div class="column flex flex-center text-center text-h4 q-pa-xl text-weight-bold"
+    style="width: 100%; color: #5E8A4B; line-height: 200%; background-image: linear-gradient(to bottom,#F4F8EE, #fff);">
+    <span>Hi 您已登入</span>
+    <span>GOHIKING 帶你去爬山</span>
+    <span>後台管理頁面</span>
   </div>
 </template>

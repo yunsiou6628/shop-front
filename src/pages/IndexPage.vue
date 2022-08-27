@@ -4,14 +4,21 @@
     <div class="relative">
       <q-carousel animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
         transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
-        <q-carousel-slide :name="1" img-src="https://i.imgur.com/TvrZlw7.png" />
-        <q-carousel-slide :name="2" img-src="https://i.imgur.com/3JtHGzb.png" />
-        <q-carousel-slide :name="3" img-src="https://i.imgur.com/X27TWb7.png" />
-        <!-- <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-        <q-carousel-slide :name="5" img-src="https://i.imgur.com/TvrZlw7.png" />
-        <q-carousel-slide :name="1" img-src="https://i.imgur.com/rdqDyDt.jpg" />
-        <q-carousel-slide :name="2" img-src="https://i.imgur.com/yQx9kGf.jpg" />
-        <q-carousel-slide :name="3" img-src="https://i.imgur.com/6NmNt4D.jpg" />-->
+        <q-carousel-slide :name="1" img-src="https://i.imgur.com/TvrZlw7.png">
+          <div class="row justify-center content-center items-center q-pa-xl bg-yellow" style="line-height: 300px;">
+            加入文字
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide :name="2" img-src="https://i.imgur.com/3JtHGzb.png">
+          <div class="row justify-center content-center items-center q-pa-xl bg-yellow" style="line-height: 300px;">
+            加入文字
+          </div>
+        </q-carousel-slide>
+        <q-carousel-slide :name="3" img-src="https://i.imgur.com/X27TWb7.png">
+          <div class="row justify-center content-center items-center q-pa-xl bg-yellow" style="line-height: 300px;">
+            加入文字
+          </div>
+        </q-carousel-slide>
       </q-carousel>
     </div>
 
