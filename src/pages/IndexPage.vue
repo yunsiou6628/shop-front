@@ -4,9 +4,12 @@
     <div class="relative">
       <q-carousel animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
         transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
-        <q-carousel-slide :name="1" img-src="https://i.imgur.com/TvrZlw7.png">
-          <div class="row justify-center content-center items-center q-pa-xl bg-yellow" style="line-height: 300px;">
-            加入文字
+        <q-carousel-slide :name="1" img-src="https://i.imgur.com/TvrZlw7.png" class="relative-position cursor-pointer">
+          <div class="column absolute-center justify-center content-center items-center text-center q-pa-xl"
+            style="text-shadow">
+            <span>加入文字</span>
+            <span>加入文字</span>
+            <span>加入文字</span>
           </div>
         </q-carousel-slide>
         <q-carousel-slide :name="2" img-src="https://i.imgur.com/3JtHGzb.png">
