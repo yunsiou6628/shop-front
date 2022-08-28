@@ -1,1 +1,0 @@
-import{o as t,I as r}from"./index.5c8bc413.js";function m(){let e;return t(()=>{e=void 0}),{registerTick(i){e=i,r(()=>{e===i&&(e(),e=void 0)})},removeTick(){e=void 0}}}function T(){let e;return t(()=>{clearTimeout(e)}),{registerTimeout(i,o){clearTimeout(e),e=setTimeout(i,o)},removeTimeout(){clearTimeout(e)}}}export{T as a,m as u};
