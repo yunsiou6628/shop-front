@@ -107,7 +107,7 @@
             <!-- 用分類 + - 去寫 日期多筆資料 -->
             <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date -->
             <div class="col-6">
-              {{ form.product_date.from }}
+              <!-- {{ form.product_date.from }} -->
               <q-input v-model="form.product_date.from" stack-label label='行程日期' :rules="['date']">
                 <!-- <template v-slot:append>
                       <q-icon name="event" class="cursor-pointer">
@@ -123,8 +123,8 @@
               </q-input>
             </div>
             <div class="col-6">
-              {{ form.product_date.to }}
-              <q-input v-model="form.product_date.to" stack-label label='行程日期' :rules="['date']">
+              <!-- {{ form.product_date.to }} -->
+              <q-input v-model="form.product_date.to" stack-lael label='行程日期' :rules="['date']">
                 <template v-slot:append>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -278,21 +278,21 @@ const openDialog = (_id) => {
     form.description = products[idx].description
     form.bulletin = products[idx].bulletin
   } else {
-    form.name = '111'
+    form.name = ''
     form.product_date = {
       from: '年/月/日',
       to: '年/月/日'
     }
     // form.product_date_start = '年/月/日'
     // form.product_date_over = '年/月/日'
-    form.region = '111'
-    form.reserve = 1
-    form.price = 1
+    form.region = ''
+    form.reserve = 0
+    form.price = 0
     form.category = ''
     form.sell = false
     form.sub = ''
-    form.description = '111'
-    form.bulletin = '111'
+    form.description = ''
+    form.bulletin = ''
   }
   form.image = null
   form.idx = idx

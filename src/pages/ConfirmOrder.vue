@@ -560,11 +560,10 @@ const confirmform = reactive({
   atmcheckDay: ''
 })
 
-// 換頁
+// 換頁 (改寫 store => 成功之後才跳頁)
 const checkout = (confirmform) => {
   user.checkout(confirmform)
   // step.value++
-  router.push('/OrderView/')
 }
 
 const rules = reactive({

@@ -11,13 +11,13 @@
       <q-form @submit.prevent='submitForm'>
         <div class="row">
           <div class="col-12">
-            <q-input outlined v-model="form.category" label="輸入大分類"/>
+            <q-input outlined v-model="form.category" label="輸入大分類" />
           </div>
           <!-- 在小分類增加多個資料 -->
-          <div class="col-12" v-for="(sub,idx) in form.sub" :key="idx">
-            <q-input outlined v-model="sub.name" label="輸入小分類"/>
-            <q-btn v-if="idx===0" @click="form.sub.push({name:''})">+</q-btn>
-            <q-btn v-else @click="form.sub.splice(idx,1)" id="submit">—</q-btn>
+          <div class="col-12" v-for="(sub, idx) in form.sub" :key="idx">
+            <q-input outlined v-model="sub.name" label="輸入小分類" />
+            <q-btn v-if="idx === 0" @click="form.sub.push({ name: '' })">+</q-btn>
+            <q-btn v-else @click="form.sub.splice(idx, 1)" id="submit">—</q-btn>
           </div>
         </div>
 
@@ -31,13 +31,7 @@
     </div>
 
     <div class="col-12">
-      <q-table
-      title="商品分類資料"
-      :rows="addCategory"
-      :columns="columns"
-      row-key="name"
-      :filter="filter"
-      >
+      <q-table title="商品分類資料" :rows="addCategory" :columns="columns" row-key="name" :filter="filter">
         <!-- 搜尋 search -->
         <template v-slot:top-right>
           <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
@@ -52,7 +46,7 @@
             <!-- <pre>{{ sub.row.sub}}</pre> -->
             <!-- <pre>{{ sub.row.sub[0].name }}</pre> -->
             <div v-for="subname in sub.row.sub" :key="subname">
-            <pre>{{subname.name}}</pre>
+              <pre>{{ subname.name }}</pre>
             </div>
           </q-td>
         </template>
@@ -61,11 +55,26 @@
         <template #body-cell-edit="edit">
           <q-td>
             <q-btn @click="editcategory(edit.row._id)">編輯</q-btn>
-            <q-btn @click="deletecategory(edit.row._id)">刪除</q-btn>
-            </q-td>
+            <q-btn @click="openDeleteDialog(edit.row._id)">刪除</q-btn>
+          </q-td>
         </template>
       </q-table>
+
     </div>
+
+    <!-- 點刪除商品彈出確認視窗 -->
+    <q-dialog v-model="deleteDialog.dialog" persistent>
+      <q-card class="row justify-center q-py-xl my-card">
+        <div class="col-12 text-center text-h3 text-red-6 q-pa-md">注意!</div>
+        <div class="col-12 text-center text-h6 text-grey-8 q-pa-md">確定要刪除分類嗎?<br>(刪除後將無法復原資料)</div>
+        <div class="col-12 row justify-center q-pa-sm q-pt-md">
+          <!-- 取消刪除 -->
+          <q-btn @click="deleteDialog.dialog = false" flat outline class="col-3 q-py-xs q-mx-md bg-grey-2" label="取消" />
+          <!-- 確定刪除 -->
+          <q-btn @click="deletecategory(del)" flat class="col-3 q-py-md q-mx-xs bg-red-6 text-white " label="確定刪除" />
+        </div>
+      </q-card>>
+    </q-dialog>
   </div>
 </template>
 
@@ -195,14 +204,30 @@ const columns = [
   }
 ]
 
+// 預設刪除分類的彈窗 為 false
+const deleteDialog = reactive({
+  dialog: false
+})
+
+const del = ref('')
+
+// 開啟刪除確認視窗
+const openDeleteDialog = (categoryid) => {
+  console.log('22222' + categoryid)
+  del.value = categoryid
+  deleteDialog.dialog = true
+}
+
 // 暫時註解才不會刪錯資料
 const deletecategory = async (categoryid) => {
+  deleteDialog.dialog = false
+  console.log('0000' + categoryid)
   try {
-    // await apiAuth.delete('/products_category/' + categoryid)
-    // await Swal.fire({
-    //   icon: 'success',
-    //   title: '刪除成功'
-    // })
+    await apiAuth.delete('/products_category/' + categoryid)
+    await Swal.fire({
+      icon: 'success',
+      title: '刪除成功'
+    })
     // 在成功的地方再呼叫一次 function
     init()
   } catch (error) {

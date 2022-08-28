@@ -160,7 +160,8 @@ export const useUserStore = defineStore({
           title: '成功',
           text: '結帳成功'
         })
-        // this.router.push('/order')
+        this.router.push('/order')
+        // router.push('/OrderView/')
       } catch (error) {
         Swal.fire({
           icon: 'error',

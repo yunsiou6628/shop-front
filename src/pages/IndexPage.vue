@@ -7,8 +7,8 @@
         @mouseleave="autoplay = true">
 
         <q-carousel-slide :name="1" img-src="https://i.imgur.com/1Jbuwv0.jpg" class="relative-position cursor-pointer ">
-          <div class="column absolute-full justify-center content-center items-center text-center text-white"
-            style="width: 100%; background: rgba(0,0,0,0.4); font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
+          <div class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
+            style="width: 100%; font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
 
             <div class="text-h3  q-pb-lg">百岳探險 <br></div>
             <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
