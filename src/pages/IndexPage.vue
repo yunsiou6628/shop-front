@@ -2,26 +2,63 @@
   <q-page>
     <!-- 輪播圖 -->
     <div class="relative">
-      <q-carousel animated v-model="slide" navigation infinite :autoplay="autoplay" arrows transition-prev="slide-right"
-        transition-next="slide-left" @mouseenter="autoplay = false" @mouseleave="autoplay = true">
-        <q-carousel-slide :name="1" img-src="https://i.imgur.com/TvrZlw7.png" class="relative-position cursor-pointer">
-          <div class="column absolute-center justify-center content-center items-center text-center q-pa-xl"
-            style="text-shadow">
-            <span>加入文字</span>
-            <span>加入文字</span>
-            <span>加入文字</span>
+      <q-carousel id="top_carousel" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows
+        transition-prev="slide-right" transition-next="slide-left" @mouseenter="autoplay = false"
+        @mouseleave="autoplay = true">
+
+        <q-carousel-slide :name="1" img-src="https://i.imgur.com/1Jbuwv0.jpg" class="relative-position cursor-pointer ">
+          <div class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
+            style="width: 100%; font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
+
+            <div class="text-h3  q-pb-lg">百岳探險 <br></div>
+            <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
+            <div class="text-h6 q-py-lg">
+              <div>生活需要來點大自然的療癒力量</div>
+              <div>帶你/妳走進山林遇見台灣百岳之美</div>
+            </div>
+            <div class="q-py-lg">
+              <q-btn :to="'/ProductViewAll/'" style=" text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多 百岳 / 中級山行程 ＞＞
+              </q-btn>
+            </div>
+
           </div>
         </q-carousel-slide>
-        <q-carousel-slide :name="2" img-src="https://i.imgur.com/3JtHGzb.png">
-          <div class="row justify-center content-center items-center q-pa-xl bg-yellow" style="line-height: 300px;">
-            加入文字
+
+        <q-carousel-slide :name="2" img-src="https://i.imgur.com/Rd3aLY4.jpg" class="relative-position cursor-pointer">
+          <div class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
+            style="width: 100%; font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
+            <div class="text-h3  q-pb-lg">古道時空之旅<br></div>
+            <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
+            <div class="text-h6 q-py-lg">
+              <div>每條古道都是通往台灣歷史故事的軌跡</div>
+              <div>帶你/妳一起尋找先民遺留下來的生活痕跡</div>
+            </div>
+            <div class="q-py-lg">
+              <q-btn :to="'/ProductViewAll/'" style=" text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多 歷史古道 / 秘境步道行程 ＞＞
+              </q-btn>
+            </div>
+
           </div>
         </q-carousel-slide>
-        <q-carousel-slide :name="3" img-src="https://i.imgur.com/X27TWb7.png">
-          <div class="row justify-center content-center items-center q-pa-xl bg-yellow" style="line-height: 300px;">
-            加入文字
+
+        <q-carousel-slide :name="3" img-src="https://i.imgur.com/3JtHGzb.png" class="relative-position cursor-pointer">
+          <div class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
+            style="width: 100%; font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
+            <div class="text-h3  q-pb-lg">小百岳山徑 <br></div>
+            <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
+            <div class="text-h6 q-py-lg">
+              <div>一起前進戶外感受大自然的擁抱</div>
+              <div>帶你/妳欣賞每一瞬擦身而過的風景</div>
+            </div>
+
+            <div class="q-py-lg">
+              <q-btn :to="'/ProductViewAll/'" style=" text-shadow: 0.1em 0.2em 0.3em black;"> ＞＞ 點我更多 小百岳行程 ＞＞</q-btn>
+            </div>
+
           </div>
         </q-carousel-slide>
+
+        <!-- img-src="https://i.imgur.com/3JtHGzb.png" -->
       </q-carousel>
     </div>
 

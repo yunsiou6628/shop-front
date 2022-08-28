@@ -35,7 +35,31 @@ body
 
 // 輪播圖
 .q-carousel
-  height: 880px
+  height: 650px
+
+// .q-carousel-slide
+//   height: 100%
+
+#top_carousel.q-carousel::before
+    content: ""
+    position: absolute
+    width: 100%
+    height: 100%
+    opacity: 50%
+    background: black
+    z-index: 1
+
+// 換頁點點
+.q-carousel__navigation.q-carousel__navigation--buttons.q-carousel__navigation--bottom
+  z-index: 2
+
+// 左箭頭
+.q-carousel__arrow.q-carousel__prev-arrow.q-carousel__prev-arrow--horizontal
+  z-index: 2
+
+// 右箭頭
+.q-carousel__arrow.q-carousel__next-arrow.q-carousel__next-arrow--horizontal
+  z-index: 2
 
 // 帶你去爬山區塊
 #indexImg-lg
