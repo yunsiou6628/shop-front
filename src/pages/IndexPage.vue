@@ -7,8 +7,8 @@
         @mouseleave="autoplay = true">
 
         <q-carousel-slide :name="1" img-src="https://i.imgur.com/1Jbuwv0.jpg" class="relative-position cursor-pointer ">
-          <div class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
-            style="width: 100%; font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
+          <div class="column absolute-full justify-center content-center items-center text-center text-white"
+            style="width: 100%; background: rgba(0,0,0,0.4); font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
 
             <div class="text-h3  q-pb-lg">百岳探險 <br></div>
             <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
@@ -60,39 +60,6 @@
 
         <!-- img-src="https://i.imgur.com/3JtHGzb.png" -->
       </q-carousel>
-    </div>
-
-    <!-- 測試sass -->
-    <div class="flex flex-center">
-
-      <div class="row">
-        <!-- 左-文字區塊 -->
-        <!-- <div class="col-12 col-lg-5 column justify-center content-center items-center bg-red">
-
-          <img src="https://i.imgur.com/0U2S3Xo.png" class="col-auto q-pt-xs-xl q-pt-lg-none">
-
-          <div class="col-auto teal-10">
-            <p>走進山裡，感受大自然的寬闊，對應自己的渺小，山給予的震撼感，不僅僅只是生理上的變化，還有更多無法言喻的感動，爬山不僅僅是一項活動，更是一場愛上山林、愛上生活的過程。</p>
-          </div>
-
-          <div class="col-auto teal-10">
-            <p>帶你走進山林看見前所未見的台灣！</p>
-          </div>
-
-          <q-btn to="/ProductViewAll" label="Read More" class="col-auto">
-          </q-btn>
-        </div> -->
-        <!-- 右-圖片區塊 -->
-        <!-- 最大尺寸 -->
-        <!-- <div class="col-12 col-lg-7" id="indexImg-lg">
-          <img
-            src="https://kitpro.site/hayka/wp-content/uploads/sites/75/2022/03/hiking-sunrise-2022-03-05-20-21-43-utc-800x533.jpg">
-          <img
-            src="https://kitpro.site/hayka/wp-content/uploads/sites/75/2022/03/female-hiker-looking-up-in-forest-sarsy-village-2022-03-07-23-58-37-utc.jpg">
-          <img
-            src="https://kitpro.site/hayka/wp-content/uploads/sites/75/2022/03/hikers-uphilling-at-mountain-forest-back-view-2021-08-29-03-30-49-utc-800x550.jpg">
-        </div> -->
-      </div>
     </div>
 
     <!-- 帶你去爬山文+圖區塊 -->
@@ -265,10 +232,10 @@ const slide = ref(1)
 const slide2 = ref(1)
 const slide3 = ref(1)
 const slide4 = ref(1)
-const autoplay = ref(true)
-const autoplay2 = ref(true)
-const autoplay3 = ref(true)
-const autoplay4 = ref(true)
+const autoplay = ref(false)
+const autoplay2 = ref(false)
+const autoplay3 = ref(false)
+const autoplay4 = ref(false)
 
 const toProduct = (productId) => {
   router.push('/product/' + productId)
