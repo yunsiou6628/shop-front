@@ -3,7 +3,7 @@
 
 <template>
   <div class="q-pt-xl">
-    <div class="text-h5 text-center">商品分類</div>
+    <div class="text-h5 text-center text-weight-bold" style="color:#5E8A4B">商品分類</div>
   </div>
 
   <div class="q-pa-xl">
@@ -31,11 +31,12 @@
     </div> -->
 
     <div class="col-12">
-      <q-btn color='secondary' @click="openDialogCategory('')"> 新增商品分類 </q-btn>
+      <q-btn style="background: #5E8A4B; color:#fff" @click="openDialogCategory('')"> 新增商品分類 </q-btn>
     </div>
 
     <div class="col-12">
-      <q-table title="商品分類資料" :rows="addCategory" :columns="columns" row-key="name" :filter="filter">
+      <q-table class=" text-grey-7 " title="商品分類資料" :rows="addCategory" :columns="columns" row-key="name"
+        :filter="filter">
         <!-- 搜尋 search -->
         <template v-slot:top-right>
           <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
@@ -50,7 +51,7 @@
             <!-- <pre>{{ sub.row.sub}}</pre> -->
             <!-- <pre>{{ sub.row.sub[0].name }}</pre> -->
             <div v-for="subname in sub.row.sub" :key="subname">
-              <pre>{{          subname.name          }}</pre>
+              <pre>{{                                                 subname.name                                                 }}</pre>
             </div>
           </q-td>
         </template>
@@ -73,21 +74,23 @@
         <q-card class="q-pa-lg">
           <q-form @submit.prevent='submitForm'>
             <div class="row">
-              <div class="col-12">
+              <div class="col-12 q-pa-md ">
                 <q-input outlined v-model="form.category" label="輸入大分類" />
               </div>
               <!-- 在小分類增加多個資料 -->
-              <div class="col-12" v-for="(sub, idx) in form.sub" :key="idx">
+              <div class="col-12 q-pa-md " v-for="(sub, idx) in form.sub" :key="idx">
                 <q-input outlined v-model="sub.name" label="輸入小分類" />
-                <q-btn v-if="idx === 0" @click="form.sub.push({ name: '' })">+</q-btn>
-                <q-btn v-else @click="form.sub.splice(idx, 1)" id="submit">—</q-btn>
+                <q-btn v-if="idx === 0" @click="form.sub.push({ name: '' })" class="q-ma-md ">+</q-btn>
+                <q-btn v-else @click="form.sub.splice(idx, 1)" id="submit" class="q-ma-md ">—</q-btn>
               </div>
             </div>
 
-            <div class="q-pt-md row justify-center">
-              <q-btn v-if="form._id === ''" type='submit' color='secondary'> 新增分類 </q-btn>
-              <q-btn v-else type='submit' color='yellow-8'> 編輯確認 </q-btn>
-              <q-btn color='primary' @click=cancel>取消</q-btn>
+            <div class="col-12 row justify-center q-pa-md q-pt-md">
+              <q-btn v-if="form._id === ''" type='submit' style="background: #5E8A4B; color:#fff;"
+                class="col q-py-xs q-mx-xs"> 新增分類 </q-btn>
+              <q-btn v-else type='submit' style="background: #5E8A4B; color:#fff" class="col q-py-xs q-mx-xs"> 編輯確認
+              </q-btn>
+              <q-btn @click=cancel style="background: #fff; color:#5E8A4B" class="col q-py-xs q-mx-xs">取消</q-btn>
             </div>
 
           </q-form>
@@ -98,13 +101,13 @@
     <!-- 點刪除商品彈出確認視窗 -->
     <q-dialog v-model="deleteDialog.dialog" persistent>
       <q-card class="row justify-center q-py-xl my-card">
-        <div class="col-12 text-center text-h3 text-red-6 q-pa-md">注意!</div>
+        <div class="col-12 text-center text-h4 text-red-6 q-pa-md">注意!</div>
         <div class="col-12 text-center text-h6 text-grey-8 q-pa-md">確定要刪除分類嗎?<br>(刪除後將無法復原資料)</div>
         <div class="col-12 row justify-center q-pa-sm q-pt-md">
           <!-- 取消刪除 -->
           <q-btn @click="deleteDialog.dialog = false" flat outline class="col-3 q-py-xs q-mx-md bg-grey-2" label="取消" />
           <!-- 確定刪除 -->
-          <q-btn @click="deletecategory(del)" flat class="col-3 q-py-md q-mx-xs bg-red-6 text-white " label="確定刪除" />
+          <q-btn @click="deletecategory(del)" flat class="col-3 q-py-xs q-mx-xs bg-red-6 text-white " label="確定刪除" />
         </div>
       </q-card>>
     </q-dialog>
@@ -148,12 +151,13 @@ const openDialogCategory = (_id) => {
   // console.log('開啟分類表單')
   form._id = _id
   if (idx > -1) {
+    console.log('進入編輯')
     form.category = addCategory[idx].category
     form.sub = addCategory[idx].sub
-    console.log('開啟分類表單2')
   } else {
+    // console.log('新增分類')
     form.category = ''
-    form.sub = ''
+    form.sub = [{ name: '' }]
   }
   form.idx = idx
   form.dialog = true

@@ -1,7 +1,7 @@
 <template>
   <!-- 大尺寸 md 以上尺寸 (gt-md 大於 md 顯示)  -->
   <q-layout view="lHh Lpr lff" class="gt-md">
-    <q-header elevated class="bg-white text-teal-10">
+    <q-header elevated class="bg-white text-weight-bolder" style="color:#5E8A4B">
       <q-toolbar>
 
         <!-- 首頁圖片 -->

@@ -2,7 +2,7 @@
 
 <template>
   <q-layout view="lHh Hpf lFf">
-    <q-header elevated class="bg-white text-teal-10">
+    <q-header elevated class="bg-white text-weight-bolder" style="color:#5E8A4B">
       <q-toolbar class="row justify-center">
 
         <q-tabs>

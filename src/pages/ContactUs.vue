@@ -73,10 +73,10 @@ const options = ['1.客製化行程', '2.問題提問', '3.改進建議', '4.其
 
 // 建立表單 初始化
 const form = reactive({
-  account: '',
-  password: '',
+  name: '',
+  phone: '',
   email: '',
-  name: ''
+  textarea: ''
 })
 
 const rules = reactive({

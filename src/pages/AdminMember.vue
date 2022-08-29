@@ -1,7 +1,11 @@
 <!-- AdminMember 會員管理 -->
 <template>
-  <div class="q-pa-md">
-    <q-table title="會員資料" :rows="users" :columns="columns" row-key="name">
+  <div class="q-pa-xl">
+    <div class="q-pb-xl">
+      <div class="text-h5 text-center text-weight-bold" style="color:#5E8A4B">會員管理</div>
+    </div>
+
+    <q-table class=" text-grey-7 " title="會員資料" :rows="users" :columns="columns" row-key="name">
 
       <!-- 搜尋 search -->
       <template v-slot:top-right>

@@ -1,17 +1,21 @@
 <!-- OrderView -->
 <template>
   <div class="q-pa-xl">
+    <div class="q-pb-xl">
+      <div class="text-h5 text-center text-weight-bold" style="color:#5E8A4B">訂單管理</div>
+    </div>
+
     <div class="col-12">
-      <q-table title="訂單管理" :rows="orders" :columns="columns" row-key="name" :filter="filter">
+      <q-table class=" text-grey-7 " title="訂單資料" :rows="orders" :columns="columns" row-key="name" :filter="filter">
         <template #body-cell-name="name">
           <q-td>
-            <pre>{{ name.row.name }}</pre>
+            <div>{{  name.row.name  }}</div>
           </q-td>
         </template>
 
         <template #body-cell-phone="phone">
           <q-td>
-            <pre>{{ phone.row.phone }}</pre>
+            <div>{{  phone.row.phone  }}</div>
           </q-td>
         </template>
 
@@ -20,7 +24,7 @@
             <!-- <pre>{{ products.row.products }}</pre> -->
             <!-- <pre>{{ products.row.products[0].product.name }}</pre> -->
             <div v-for="product in products.row.products" :key="product">
-              <pre>{{ product.product.name }}</pre>
+              <div>{{  product.product?.name  }}</div>
             </div>
           </q-td>
         </template>
@@ -30,15 +34,15 @@
             <!-- <pre>{{ quantity.row.products }}</pre> -->
             <!-- <pre>{{ quantity.row.products[0].quantity }}</pre> -->
             <div v-for="num in quantity.row.products" :key="num">
-              <pre>{{ num.quantity }}</pre>
+              <div>{{  num.quantity  }}</div>
             </div>
           </q-td>
         </template>
 
         <template #body-cell-PAY="PAY">
           <q-td>
-            <div>{{ PAY.row.cardtype?.label }}</div>
-            <div>{{ PAY.row.checkPay?.label }}</div>
+            <div>{{  PAY.row.cardtype?.label  }}</div>
+            <div>{{  PAY.row.checkPay?.label  }}</div>
             <div v-if="PAY.row.atmcheckDay">ATM 付款</div>
             <!-- 如果有 PAY.row.atmcheckDay 資料就當成 true 就會顯示文字 -->
           </q-td>
@@ -47,18 +51,18 @@
         <template #body-cell-cardname="cardname">
           <q-td>
             <!-- <pre>{{ cardname.row }}</pre> -->
-            <div>{{ cardname.row.cardname }}</div>
-            <div>{{ cardname.row.checkName }}</div>
-            <div>{{ cardname.row.atmcheckName }}</div>
+            <div>{{  cardname.row.cardname  }}</div>
+            <div>{{  cardname.row.checkName  }}</div>
+            <div>{{  cardname.row.atmcheckName  }}</div>
           </q-td>
         </template>
 
         <template #body-cell-PAYaccound="PAYaccound">
           <q-td>
             <!-- <pre>{{ PAYaccound.row }}</pre> -->
-            <div>{{ PAYaccound.row.cardnumber }}</div>
-            <div>{{ PAYaccound.row.checkAccount }}</div>
-            <div>{{ PAYaccound.row.atmcheckAccount }}</div>
+            <div>{{  PAYaccound.row.cardnumber  }}</div>
+            <div>{{  PAYaccound.row.checkAccount  }}</div>
+            <div>{{  PAYaccound.row.atmcheckAccount  }}</div>
           </q-td>
         </template>
 
@@ -191,11 +195,12 @@ const init = async () => {
     const { data } = await apiAuth.get('/orders/all')
     orders.push(...data.result.map(order => {
       order.totalPrice = order.products.reduce((a, b) => {
-        return a + b.product.price * b.quantity
+        return a + b.price * b.quantity
       }, 0)
       return order
-    }))
-    console.log(orders)
+    })
+    )
+    console.log(data.result)
   } catch (error) {
     console.log(error)
     Swal.fire({

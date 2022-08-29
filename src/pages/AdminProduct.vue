@@ -4,9 +4,9 @@
 <template>
   <!------------ 表單 ------------>
   <div class="q-pa-xl">
-    <div class="text-h5 text-center">商品管理</div>
+    <div class="text-h5 text-center text-weight-bold" style="color:#5E8A4B">商品管理</div>
     <div class="col-12">
-      <q-btn color='secondary' @click="openDialog('')"> 新增商品 </q-btn>
+      <q-btn style="background: #5E8A4B; color:#fff" @click="openDialog('')"> 新增商品 </q-btn>
     </div>
 
     <!-- <q-input v-model="search" filled type="search" hint="Search">
@@ -16,7 +16,7 @@
       </q-input> -->
 
     <div class="col-12">
-      <q-table title="商品資料" :rows="products" :columns="columns" row-key="name" :filter="filter">
+      <q-table class=" text-grey-7 " title="商品資料" :rows="products" :columns="columns" row-key="name" :filter="filter">
 
         <!-- 搜尋 search -->
         <template v-slot:top-right>
@@ -42,8 +42,8 @@
             <!-- {{product_date.row}} -->
             <!-- {{product_date.row.product_date.from}}
             {{product_date.row.product_date.to}} -->
-            <div>{{ new Date(product_date.row.product_date.from).toLocaleDateString() }}</div>
-            <div>{{ new Date(product_date.row.product_date.to).toLocaleDateString() }}</div>
+            <div>{{  new Date(product_date.row.product_date.from).toLocaleDateString()  }}</div>
+            <div>{{  new Date(product_date.row.product_date.to).toLocaleDateString()  }}</div>
           </q-td>
         </template>
 
@@ -51,7 +51,7 @@
         <template #body-cell-region="region">
           <q-td>
             <!-- class="text-wrapper" 文字過長自動換行 -->
-            <div class="text-wrapper">{{ region.row.region }}</div>
+            <div class="text-wrapper">{{  region.row.region  }}</div>
           </q-td>
         </template>
 
@@ -67,7 +67,7 @@
         <template #body-cell-description="description">
           <q-td>
             <!-- class="text-wrapper" 文字過長自動換行 -->
-            <div class="text-wrapper">{{ description.row.description }}</div>
+            <div class="text-wrapper">{{  description.row.description  }}</div>
           </q-td>
         </template>
 
@@ -75,13 +75,13 @@
         <template #body-cell-bulletin="bulletin">
           <q-td>
             <!-- class="text-wrapper" 文字過長自動換行 -->
-            <div class="text-wrapper">{{ bulletin.row.bulletin }}</div>
+            <div class="text-wrapper">{{  bulletin.row.bulletin  }}</div>
           </q-td>
         </template>
 
         <template #body-cell-sub="data">
           <q-td>
-            {{ data.row.category.name }} > {{ data.row.sub.name }}
+            {{  data.row.category.name  }} > {{  data.row.sub.name  }}
           </q-td>
         </template>
         <!-- Template Slot (插槽) https://book.vue.tw/CH2/2-4-slots.html => Slot 方式加入按鈕 -->
@@ -139,41 +139,45 @@
               </q-input>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 q-py-sm">
               <q-input v-model='form.region' label='縣市區域' :rules='[rules.required]'></q-input>
             </div>
-            <div class="col-12">
+            <div class="col-12 q-py-sm">
               <q-select :options='options' emit-value map-options v-model='form.category' label='大分類'
                 @update:model-value="form.sub = ''"></q-select>
             </div>
-            <div class="col-12">
+            <div class="col-12 q-py-sm">
               <q-select :options='suboptions' emit-value map-options v-model='form.sub' label='小分類'></q-select>
             </div>
-            <div class="col-12">
+            <div class="col-12 q-py-sm">
               <q-input type='number' v-model.number='form.price' label='價格' :rules='[rules.required, rules.price]'>
               </q-input>
             </div>
-            <div class="col-12">
+            <div class="col-12 q-py-sm">
               <q-file v-model='form.image' show-size accept='image/*' label='商品圖片' :rules='[rules.size]'></q-file>
             </div>
-            <div class="col-12">
+            <div class="col-12 q-py-sm">
               <q-input type="textarea" v-model='form.description' label='商品描述'></q-input>
             </div>
-            <div class="col-12">
+            <div class="col-12 q-py-sm">
               <q-input type="textarea" v-model='form.bulletin' label='公告提醒'></q-input>
             </div>
-            <div class="col-12">
+            <div class="col-12 q-py-sm">
               <q-input v-model='form.reserve' label='庫存數量(名額)'></q-input>
             </div>
-            <div class="col-12">
+            <div class="col-12 q-py-lg text-grey-7">
               <q-checkbox v-model='form.sell' label='上架'></q-checkbox>
             </div>
           </div>
-          <q-card-actions>
+
+          <q-card-actions class="row justify-center text-center q-pa-md ">
             <q-space />
-            <q-btn type='submit' color='primary' v-close-popup>確定</q-btn>
-            <q-btn color='primary' @click='form.dialog = false' v-close-popup>取消</q-btn>
+            <q-btn @click='form.dialog = false' v-close-popup class="col q-pa-xl"
+              style="background: #fff; color:#5E8A4B">取消
+            </q-btn>
+            <q-btn v-close-popup type='submit' class="col q-pa-xl" style="background: #5E8A4B; color:#fff">確定</q-btn>
           </q-card-actions>
+
         </q-form>
       </q-card>
     </q-dialog>
