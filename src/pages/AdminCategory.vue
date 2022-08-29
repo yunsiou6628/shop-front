@@ -7,13 +7,13 @@
   </div>
 
   <div class="q-pa-xl">
-    <div class="q-pb-xl row justify-center">
+    <!-- <div class="q-pb-xl row justify-center">
       <q-form @submit.prevent='submitForm'>
         <div class="row">
           <div class="col-12">
             <q-input outlined v-model="form.category" label="輸入大分類" />
           </div>
-          <!-- 在小分類增加多個資料 -->
+          在小分類增加多個資料
           <div class="col-12" v-for="(sub, idx) in form.sub" :key="idx">
             <q-input outlined v-model="sub.name" label="輸入小分類" />
             <q-btn v-if="idx === 0" @click="form.sub.push({ name: '' })">+</q-btn>
@@ -28,6 +28,10 @@
         </div>
 
       </q-form>
+    </div> -->
+
+    <div class="col-12">
+      <q-btn color='secondary' @click="openDialogCategory('')"> 新增商品分類 </q-btn>
     </div>
 
     <div class="col-12">
@@ -46,7 +50,7 @@
             <!-- <pre>{{ sub.row.sub}}</pre> -->
             <!-- <pre>{{ sub.row.sub[0].name }}</pre> -->
             <div v-for="subname in sub.row.sub" :key="subname">
-              <pre>{{ subname.name }}</pre>
+              <pre>{{          subname.name          }}</pre>
             </div>
           </q-td>
         </template>
@@ -54,12 +58,41 @@
         <!-- 編輯|刪除 -->
         <template #body-cell-edit="edit">
           <q-td>
-            <q-btn @click="editcategory(edit.row._id)">編輯</q-btn>
+            <q-btn @click="openDialogCategory(edit.row._id)">編輯</q-btn>
             <q-btn @click="openDeleteDialog(edit.row._id)">刪除</q-btn>
           </q-td>
         </template>
       </q-table>
 
+    </div>
+
+    <!-- 新增商品分類 彈出視窗 -->
+    <div class="q-pa-xl">
+      <!-- <div class="q-pb-xl row justify-center"> -->
+      <q-dialog v-model="form.dialog" persistent>
+        <q-card class="q-pa-lg">
+          <q-form @submit.prevent='submitForm'>
+            <div class="row">
+              <div class="col-12">
+                <q-input outlined v-model="form.category" label="輸入大分類" />
+              </div>
+              <!-- 在小分類增加多個資料 -->
+              <div class="col-12" v-for="(sub, idx) in form.sub" :key="idx">
+                <q-input outlined v-model="sub.name" label="輸入小分類" />
+                <q-btn v-if="idx === 0" @click="form.sub.push({ name: '' })">+</q-btn>
+                <q-btn v-else @click="form.sub.splice(idx, 1)" id="submit">—</q-btn>
+              </div>
+            </div>
+
+            <div class="q-pt-md row justify-center">
+              <q-btn v-if="form._id === ''" type='submit' color='secondary'> 新增分類 </q-btn>
+              <q-btn v-else type='submit' color='yellow-8'> 編輯確認 </q-btn>
+              <q-btn color='primary' @click=cancel>取消</q-btn>
+            </div>
+
+          </q-form>
+        </q-card>
+      </q-dialog>
     </div>
 
     <!-- 點刪除商品彈出確認視窗 -->
@@ -109,13 +142,15 @@ const cancel = () => {
   form.submitting = false
 }
 
-const editcategory = (_id) => {
+// 清空表單/打開表單(新增商品分類和編輯按鈕 開起的表單form)
+const openDialogCategory = (_id) => {
   const idx = _id === '' ? -1 : addCategory.findIndex(addCategory => addCategory._id === _id)
+  // console.log('開啟分類表單')
   form._id = _id
-  console.log(form._id)
   if (idx > -1) {
     form.category = addCategory[idx].category
     form.sub = addCategory[idx].sub
+    console.log('開啟分類表單2')
   } else {
     form.category = ''
     form.sub = ''
@@ -125,6 +160,23 @@ const editcategory = (_id) => {
   form.valid = false
   form.submitting = false
 }
+
+// const editcategory = (_id) => {
+//   const idx = _id === '' ? -1 : addCategory.findIndex(addCategory => addCategory._id === _id)
+//   form._id = _id
+//   console.log(form._id)
+//   if (idx > -1) {
+//     form.category = addCategory[idx].category
+//     form.sub = addCategory[idx].sub
+//   } else {
+//     form.category = ''
+//     form.sub = ''
+//   }
+//   form.idx = idx
+//   form.dialog = true
+//   form.valid = false
+//   form.submitting = false
+// }
 
 const submitForm = async () => {
   // console.log(form)

@@ -1,18 +1,23 @@
 <!-- AdminMember 會員管理 -->
 <template>
   <div class="q-pa-md">
-    <q-table
-      title="會員資料"
-      :rows="users"
-      :columns="columns"
-      row-key="name"
-    >
+    <q-table title="會員資料" :rows="users" :columns="columns" row-key="name">
+
+      <!-- 搜尋 search -->
+      <template v-slot:top-right>
+        <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
+
       <!-- 刪除 -->
       <template #body-cell-edit="edit">
         <q-td>
           <!-- {{edit.row._id}} -->
           <q-btn @click="deleteuser(edit.row._id)">刪除</q-btn>
-          </q-td>
+        </q-td>
       </template>
 
     </q-table>
@@ -20,9 +25,11 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import Swal from 'sweetalert2'
 import { apiAuth } from '../boot/axios'
+
+const filter = ref('')
 
 const users = reactive([])
 

@@ -63,7 +63,7 @@
 
       <div class="row q-px-xxxl" style=" background: #F4F8EE; color: #5E8A4B;">
         <!-- 置中範圍 -->
-        <div class="row justify-center q-ma-lg q-px-xl" style="width: 100%;">
+        <div class="row justify-center q-ma-xl q-px-xl" style="width: 100%;">
 
           <!-- 文字 -->
           <div class="col-6 q-pa-xl">
@@ -85,7 +85,7 @@
           </div>
 
           <!--圖 -->
-          <div class="col-6 q-pa-md" :ratio="4 / 3">
+          <div class="col-6 q-pa-lg" :ratio="4 / 3">
             <q-img src="https://i.imgur.com/Uk0GmRU.jpg" style="height: 100%;" />
           </div>
 

@@ -8,27 +8,29 @@
 
       <template v-slot:before>
         <q-tabs v-model="tab" vertical style="color: #5E8A4B;">
-          <q-tab class="text-h6 text-weight-bolder" name="difficulty">難度分類</q-tab>
 
+          <div>
+            <q-tab class="text-h6 text-weight-bolder" name="difficulty">難度分類</q-tab>
+          </div>
           <div class="text-center">
             <div class="columns">
               <!-- 第一個迴圈抓大的分類組(大分類category+小分類sub => 對照資料庫，顯示category) -->
               <div class="col-3 " v-for='productscategory in productscategorys' :key='productscategory._id'>
-                <div class="q-pa-xs text-h6  text-weight-bolder"> | {{ productscategory.category }} | </div>
+                <div class="q-pa-xs text-h6  text-weight-bolder"> | {{  productscategory.category  }} | </div>
                 <!-- <div class="q-pa-xs text-h6">{{ productscategorys[1].sub[0].name }}</div> -->
                 <!-- 第二個迴圈抓小的分類組(只有小分類sub => 對照資料庫，顯示sub 用tab包起來) -->
                 <q-tab class="col-3 " :name="categoryname._id" v-for='categoryname in productscategory.sub'
                   :key='categoryname._id' @click="filterdata(categoryname._id, categoryname.name)">
                   <!-- <div class="q-pa-xs text-h6">{{ productscategory.sub }}</div> -->
-                  <div class="q-pa-xs text-h6  text-weight-bold">{{ categoryname.name }}</div>
+                  <div class="q-pa-xs text-h6  text-weight-bold">{{  categoryname.name  }}</div>
                   <!-- <div class="q-pa-xs text-h6">{{ categoryname._id }}</div> -->
                 </q-tab>
               </div>
             </div>
           </div>
-
-          <q-tab class="text-h6 text-weight-bolder" name="customized">客製化行程</q-tab>
-
+          <div>
+            <q-tab class="text-h6 text-weight-bolder" name="customized">客製化行程</q-tab>
+          </div>
           <!-- 原固定架構 -->
           <!-- <div class="col-12">
             <div class="text-subtitle1 text-center"> | 台灣百岳 | </div>
@@ -117,7 +119,7 @@
 
             <!-- 小分類標題 -->
             <div class="col-12 q-pt-xl flex flex-center text-weight-bold text-h4" style="color: #5E8A4B;">
-              <div>{{ mainname }}</div>
+              <div>{{  mainname  }}</div>
             </div>
 
             <!-- 分隔線 -->
@@ -208,9 +210,8 @@
 
             <q-tab clickable :name="categoryname._id" v-for='categoryname in productscategory.sub'
               :key='categoryname._id' @click="filterdata(categoryname._id, categoryname.name)">
-              <q-item-section class="q-pa-xs text-subtitle1 text-weight-bolder" style="color:#5E8A4B;">{{
-                  categoryname.name
-              }}
+              <q-item-section class="q-pa-xs text-subtitle1 text-weight-bolder" style="color:#5E8A4B;">
+                {{ categoryname.name }}
               </q-item-section>
             </q-tab>
           </q-btn-dropdown>
@@ -295,7 +296,7 @@
 
             <!-- 小分類標題 -->
             <div class="col-12 q-pt-xl flex flex-center text-weight-bold text-h4" style="color: #5E8A4B;">
-              <div>{{ mainname }}</div>
+              <div>{{  mainname  }}</div>
             </div>
 
             <!-- 分隔線 -->

@@ -57,11 +57,10 @@
 
             <div class="q-pa-md row justify-center content-center items-center">
               <q-btn label="Read More" class="col-auto "
-                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;">
-                <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
-                <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
-                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;"> -->
-              </q-btn>
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;" />
+              <!-- 先暫時不跳頁-未完 to="/ArticleColumnOne" -->
+              <!-- <q-btn to="/ArticleColumnOne" label="Read More" class="col-auto "
+                style="width: 150px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 14px;" /> -->
             </div>
           </div>
           <q-img class="col-6" :ratio="4 / 3" src="https://i.imgur.com/uzJHT8E.jpg" />
@@ -245,8 +244,3 @@
 
   </div>
 </template>
-
-<script setup>
-
-const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-</script>

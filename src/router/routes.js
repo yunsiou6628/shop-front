@@ -115,6 +115,16 @@ const routes = [
           admin: false
         }
       },
+      // Q&A
+      {
+        path: 'QA',
+        component: () => import('pages/QA.vue'),
+        meta: {
+          title: '登山行程網站 | 單一商品頁',
+          login: false,
+          admin: false
+        }
+      },
       {
         path: 'test/',
         component: () => import('pages/TextPage.vue'),

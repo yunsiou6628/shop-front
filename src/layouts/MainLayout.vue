@@ -33,8 +33,15 @@
         </q-input> -->
 
         <div>
+
+          <!-- Q&A -->
+          <!-- <i class="fa-solid fa-circle-question"></i> -->
+          <!-- <i class="fa-solid fa-clipboard-question"></i> -->
+          <q-btn flat round color="teal-10" icon="fa-solid fa-clipboard-question" to="/QA" size="sm" class="q-mx-sm" />
+
           <!-- 聯絡我們 -->
           <q-btn flat round color="teal-10" icon="fa-solid fa-comment-dots" to="/ContactUs" size="sm" class="q-mx-sm" />
+
           <!-- 登入前(註冊/登入) -->
           <q-btn flat round color="teal-10" icon="fa-solid fa-user" v-if='!isLogin' to="/login" size="sm" />
           <!-- 登入 - 有 dropdown 選單 -->
@@ -96,7 +103,7 @@
     </q-page-container>
 
     <!-- footer ------------------------------------------------------------------------------------------------------------------------------------- -->
-    <q-footer style="background:transparent; z-index: -1;">
+    <q-footer style="background: transparent;  z-index: 0;">
       <div class=" col-12 relative-position">
         <!-- 底圖 -->
         <!-- 電腦大尺寸顯示 -->
