@@ -16,14 +16,14 @@
             <div class="columns">
               <!-- 第一個迴圈抓大的分類組(大分類category+小分類sub => 對照資料庫，顯示category) -->
               <div class="col-3 " v-for='productscategory in productscategorys' :key='productscategory._id'>
-                <div class="q-pa-xs text-h6  text-weight-bolder"> | {{  productscategory.category  }} | </div>
+                <div class="q-pa-xs text-h6  text-weight-bolder"> | {{ productscategory.category }} | </div>
                 <!-- <div class="q-pa-xs text-h6">{{ productscategorys[1].sub[0].name }}</div> -->
                 <!-- 第二個迴圈抓小的分類組(只有小分類sub => 對照資料庫，顯示sub 用tab包起來) -->
                 <q-tab class="col-3 " :name="categoryname._id" v-for='categoryname in productscategory.sub'
                   :key='categoryname._id' @click="filterdata(categoryname._id, categoryname.name)">
                   <!-- <div class="q-pa-xs text-h6">{{ productscategory.sub }}</div> -->
-                  <div class="q-pa-xs text-h6  text-weight-bold">{{  categoryname.name  }}</div>
-                  <!-- <div class="q-pa-xs text-h6">{{ categoryname._id }}</div> -->
+                  <div class="q-pa-xs text-h6  text-weight-bold">{{ categoryname.name }}</div>
+                  <div class="q-pa-xs text-h6">{{ categoryname._id }}</div>
                 </q-tab>
               </div>
             </div>
@@ -119,7 +119,7 @@
 
             <!-- 小分類標題 -->
             <div class="col-12 q-pt-xl flex flex-center text-weight-bold text-h4" style="color: #5E8A4B;">
-              <div>{{  mainname  }}</div>
+              <div>{{ mainname }}</div>
             </div>
 
             <!-- 分隔線 -->
@@ -296,7 +296,7 @@
 
             <!-- 小分類標題 -->
             <div class="col-12 q-pt-xl flex flex-center text-weight-bold text-h4" style="color: #5E8A4B;">
-              <div>{{  mainname  }}</div>
+              <div>{{ mainname }}</div>
             </div>
 
             <!-- 分隔線 -->
@@ -354,10 +354,13 @@
 </template>
 
 <script setup>
-import { reactive, ref, computed } from 'vue'
+import { reactive, ref, computed, onMounted } from 'vue'
 import Swal from 'sweetalert2'
 import { api } from '../boot/axios'
 import ProductCard from '../components/ProductCard.vue'
+import { useRoute, useRouter } from 'vue-router'
+const route = useRoute()
+const router = useRouter()
 
 // 初始化
 const form = reactive({
@@ -380,9 +383,11 @@ const filterdata = async (productsubid, categoryname) => {
   // console.log(form.sub)
   try {
     const { data } = await api.post('/products/sub', form)
-    // console.log(data.result)
+    // 從 第 0 個索引 開始刪除 (productsubResult陣列長度) 個元素
     productsubResult.splice(0, productsubResult.length)
+    // push (data.result 新的資料) 進 productsubResult陣列
     productsubResult.push(...data.result)
+    console.log(productsubResult)
     // console.log(productsubResult[0].sub)
   } catch (error) {
     // console.log(error)
@@ -427,6 +432,16 @@ const init = async () => {
       }
       return product
     }))
+    // 點擊首頁輪播圖跳頁後抓取分類id -----------------------------
+    // https://www.796t.com/content/1545760631.html
+    // 如果分類 id 等於 輪播圖點擊的連結id , 把 id 給 tab.value 變數的值
+    if (route.query.category === '62f26525699f03156454a0f6') {
+      tab.value = '62f26525699f03156454a0f6'
+      filterdata(route.query.category, route.query.name)
+    }
+    // else if (route.query.category === '62f26525699f03156454a0f6'){
+
+    // }
   } catch (error) {
     console.log(error)
     Swal.fire({

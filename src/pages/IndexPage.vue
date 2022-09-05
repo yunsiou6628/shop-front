@@ -1,65 +1,120 @@
 <template>
+  <div id="mainbanner">
+    <div class="row">
+      <q-responsive class="col" :ratio="16 / 9">
+        <div style="overflow: hidden; ">
+          <!-- 01 背景山雲海 -->
+          <!-- <q-img src="../assets/01.jpg" id="banner1" style="width: 100%; height: 100%; position: absolute;" /> -->
+          <!-- 02 左邊山 -->
+          <q-img src="../assets/02.png" id="banner2" />
+          <!-- 04 雲 -->
+          <q-img src="../assets/04.cloud.png" id="banner4" />
+          <!-- 05 雲 -->
+          <q-img src="../assets/05.png" id="banner5" />
+          <!-- gohiking 字 -->
+          <q-img src="../assets/gohiking.png" id="gohiking" />
+          <!-- 03 前景人物 -->
+          <q-img src="../assets/03mainbanner.png" id="banner3" />
+          <!-- 06 前景雲 -->
+          <q-img src="../assets/06.cloud_top.png" id="banner6" />
+        </div>
+
+      </q-responsive>
+    </div>
+  </div>
+
+  <!-- 雲銜接高度 -->
+  <div style="width: 100%; height: 100px;"></div>
+
   <q-page>
-    <!-- 輪播圖 -->
-    <div class="relative">
-      <q-carousel id="top_carousel" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows
-        transition-prev="slide-right" transition-next="slide-left" @mouseenter="autoplay = false"
-        @mouseleave="autoplay = true">
+    <div class="relative-position" style="width:100%;">
+      <!-- 漸層銜接 第1層 -->
+      <div class="absolute-top-left"
+        style="width: 100%; height: 180px; background:  linear-gradient( rgba(255,255,255,1), rgba(255,255,255,0));  z-index: 5;">
+      </div>
 
-        <q-carousel-slide :name="1" img-src="https://i.imgur.com/1Jbuwv0.jpg" class="relative-position cursor-pointer ">
-          <div class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
-            style="width: 100%; font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
+      <!-- 輪播圖 -->
+      <div class="relative-position">
+        <!-- 漸層銜接 第2層 -->
+        <div class="absolute-top-left"
+          style="width: 100%; height: 150px; background:  linear-gradient( rgba(255,255,255,1), rgba(255,255,255,0));  z-index: 5;">
+        </div>
+        <q-carousel id="top_carousel" animated v-model="slide" navigation infinite :autoplay="autoplay" arrows
+          transition-prev="slide-right" transition-next="slide-left" @mouseenter="autoplay = false"
+          @mouseleave="autoplay = true">
 
-            <div class="text-h3  q-pb-lg">百岳探險 <br></div>
-            <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
-            <div class="text-h6 q-py-lg">
-              <div>生活需要來點大自然的療癒力量</div>
-              <div>帶你/妳走進山林遇見台灣百岳之美</div>
+          <q-carousel-slide :name="1" img-src="https://i.imgur.com/1Jbuwv0.jpg"
+            class="relative-position cursor-pointer ">
+            <div
+              class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
+              style="width: 100%; text-shadow: 0.1em 0.2em 0.3em black; z-index: 10;">
+
+              <div class="text-h2  q-py-lg" style="font-weight: 900; text-shadow: 0.2em 0.2em 0.5em black;">百岳探險 <br>
+              </div>
+              <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
+              <div class="text-h5 q-py-lg" style="font-weight: 550;">
+                <div>生活需要來點大自然的療癒力量</div>
+                <div>帶你/妳走進山林遇見台灣百岳之美</div>
+              </div>
+              <div class="q-py-lg">
+                <q-btn class="text-h6"
+                  :to="{ path: '/ProductViewAll/', query: { category: '62f26525699f03156454a0f6', name: '百岳新手推薦' } }"
+                  style="font-weight: 550; text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多
+                  百岳 / 中級山行程 ＞＞
+                </q-btn>
+              </div>
+
             </div>
-            <div class="q-py-lg">
-              <q-btn :to="'/ProductViewAll/'" style=" text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多 百岳 / 中級山行程 ＞＞
-              </q-btn>
+          </q-carousel-slide>
+
+          <q-carousel-slide :name="2" img-src="https://i.imgur.com/Rd3aLY4.jpg"
+            class="relative-position cursor-pointer">
+            <div
+              class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
+              style="width: 100%; text-shadow: 0.1em 0.2em 0.3em black; z-index: 10;">
+
+              <div class="text-h2  q-py-lg" style="font-weight: 900; text-shadow: 0.2em 0.2em 0.5em black;">古道時空之旅<br>
+              </div>
+              <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
+              <div class="text-h5 q-py-lg" style="font-weight: 550;">
+                <div>每條古道都是通往台灣歷史故事的軌跡</div>
+                <div>帶你/妳一起尋找先民遺留下來的生活痕跡</div>
+              </div>
+              <div class="q-py-lg">
+                <q-btn class="text-h6" :to="'/ProductViewAll/'"
+                  style="font-weight: 550; text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多 歷史古道 / 秘境步道行程 ＞＞
+                </q-btn>
+              </div>
+
             </div>
+          </q-carousel-slide>
 
-          </div>
-        </q-carousel-slide>
+          <q-carousel-slide :name="3" img-src="https://i.imgur.com/3JtHGzb.png"
+            class="relative-position cursor-pointer">
+            <div
+              class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
+              style="width: 100%; text-shadow: 0.1em 0.2em 0.3em black; z-index: 10;">
 
-        <q-carousel-slide :name="2" img-src="https://i.imgur.com/Rd3aLY4.jpg" class="relative-position cursor-pointer">
-          <div class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
-            style="width: 100%; font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
-            <div class="text-h3  q-pb-lg">古道時空之旅<br></div>
-            <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
-            <div class="text-h6 q-py-lg">
-              <div>每條古道都是通往台灣歷史故事的軌跡</div>
-              <div>帶你/妳一起尋找先民遺留下來的生活痕跡</div>
+              <div class="text-h2  q-py-lg" style="font-weight: 900; text-shadow: 0.2em 0.2em 0.5em black;">小百岳山徑 <br>
+              </div>
+              <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
+              <div class="text-h5 q-py-lg" style="font-weight: 550;">
+                <div>一起前進戶外感受大自然的擁抱</div>
+                <div>帶你/妳欣賞每一瞬擦身而過的風景</div>
+              </div>
+
+              <div class="q-py-lg">
+                <q-btn class="text-h6" :to="'/ProductViewAll/'"
+                  style="font-weight: 550; text-shadow: 0.1em 0.2em 0.3em black;"> ＞＞ 點我更多
+                  小百岳行程 ＞＞</q-btn>
+              </div>
+
             </div>
-            <div class="q-py-lg">
-              <q-btn :to="'/ProductViewAll/'" style=" text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多 歷史古道 / 秘境步道行程 ＞＞
-              </q-btn>
-            </div>
+          </q-carousel-slide>
 
-          </div>
-        </q-carousel-slide>
-
-        <q-carousel-slide :name="3" img-src="https://i.imgur.com/3JtHGzb.png" class="relative-position cursor-pointer">
-          <div class="column absolute-center justify-center content-center items-center text-center text-white q-pa-xl"
-            style="width: 100%; font-weight: 900; text-shadow: 0.1em 0.2em 0.3em black; z-index: 2;">
-            <div class="text-h3  q-pb-lg">小百岳山徑 <br></div>
-            <div class="q-my-sm" style="width: 40%; border: 1px solid #fff;"></div>
-            <div class="text-h6 q-py-lg">
-              <div>一起前進戶外感受大自然的擁抱</div>
-              <div>帶你/妳欣賞每一瞬擦身而過的風景</div>
-            </div>
-
-            <div class="q-py-lg">
-              <q-btn :to="'/ProductViewAll/'" style=" text-shadow: 0.1em 0.2em 0.3em black;"> ＞＞ 點我更多 小百岳行程 ＞＞</q-btn>
-            </div>
-
-          </div>
-        </q-carousel-slide>
-
-        <!-- img-src="https://i.imgur.com/3JtHGzb.png" -->
-      </q-carousel>
+          <!-- img-src="https://i.imgur.com/3JtHGzb.png" -->
+        </q-carousel>
+      </div>
     </div>
 
     <!-- 帶你去爬山文+圖區塊 -->
@@ -132,7 +187,8 @@
 
                 <div class="col-4 q-pa-md" v-for="(img, idx) in [0, 1, 2]" :key="idx">
 
-                  <q-card style="height: 400px;" @click="toProduct(products[index + index * 3 + idx]?._id)">
+                  <q-card class="newest-card" style="height: 400px;"
+                    @click="toProduct(products[index + index * 3 + idx]?._id)">
 
                     <img style="width: 100%; height: 200px;" :src="products[index + index * 3 + idx]?.image"
                       v-if="products[index + index * 3 + idx]?.image.length" />
@@ -221,10 +277,18 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import Swal from 'sweetalert2'
 import { api } from '../boot/axios'
 import { useRouter } from 'vue-router'
+
+// https://www.npmjs.com/package/gsap
+// typical import 主要程式
+import gsap from 'gsap'
+
+// get other plugins:
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import { transform } from '@vue/compiler-core'
 
 const router = useRouter()
 
@@ -256,4 +320,93 @@ const init = async () => {
   }
 }
 init()
+
+// 視差效果 ----------------------------------------------------------------------------------------------------
+
+// ES6 or TypeScript:
+// https://www.npmjs.com/package/cheerio
+// import * as cheerio from 'cheerio'
+
+// don't forget to register plugins
+gsap.registerPlugin(ScrollTrigger)
+
+const scrolldata = {
+  start: 'top 0',
+  end: 'bottom 0',
+  scrub: true,
+  trigger: '#mainbanner'
+  // markers: true
+}
+
+onMounted(() => {
+  gsap.to('#mainbanner', {
+    scrollTrigger: scrolldata,
+    backgroundPosition: 'center -300px'
+  })
+
+  // 山
+  gsap.to('#banner2', {
+    scrollTrigger: scrolldata,
+    top: 1500,
+    left: -800
+  })
+
+  // 前景人物
+  gsap.to('#banner3', {
+    scrollTrigger: scrolldata,
+    top: 900,
+    left: 500
+  })
+
+  gsap.to('#gohiking', {
+    scrollTrigger: scrolldata,
+    top: '100%',
+    scale: 0.3
+  })
+
+  // 雲自動移動 -------------------------
+  // 近的雲
+  gsap.to('#banner4', {
+    x: window.innerWidth,
+    duration: 40,
+    repeat: -1
+  })
+
+  // 遠的雲
+  gsap.to('#banner5', {
+    x: -window.innerWidth * 2,
+    duration: 60,
+    ease: 'none',
+    repeat: -1
+  })
+
+  // 滑鼠監聽事件
+  window.addEventListener('mousemove', function (e) {
+    // console.log('x:' + -(e.pageX - window.innerWidth / 2))
+
+    // console.log('X:' + numX)
+    // console.log('Y:' + numY)
+    // const numnum = (parseInt(((e.pageX - window.innerWidth / 2) / 50) - ((e.pageY - window.innerHeight / 2) / 50)))
+    // console.log(numnum)
+
+    gsap.set('#banner2', {
+      x: (e.pageX - window.innerWidth / 2) / 20,
+      y: (e.pageY - window.innerHeight / 2) / 20
+    })
+
+    gsap.set('#banner3', {
+      x: (e.pageX - window.innerWidth / 2) / 10,
+      y: (e.pageY - window.innerHeight / 2) / 10
+    })
+
+    gsap.set('#gohiking', {
+      x: (e.pageX - window.innerWidth / 2) / 15,
+      y: (e.pageY - window.innerHeight / 2) / 15
+    })
+  })
+})
+
+// gsap 視差資料
+// GSAP 實現Parallax滾動視差特效 => https://blog.digishot.name/tw/552869212/page/blog/mode/show/cID/2/nNO/1651029107
+// Gsap 視差滾動 => https://animpen.com/pen/LgKtwBsd
 </script>

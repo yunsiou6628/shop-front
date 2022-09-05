@@ -11,15 +11,15 @@
         style="color: #5E8A4B; font-weight: bolder;">
         <template #body-cell-image="all">
           <q-td :img="img">
-            <img :src="all.row.product.image" style="width:200px">
+            <img :src="all.row.product?.image" style="width:200px">
             <!-- <pre>{{all.row.product.image}}</pre> -->
           </q-td>
         </template>
 
         <template #body-cell-product_date="all">
           <q-td :product_date="product_date">
-            {{ new Date(all.row.product.product_date.from).toLocaleDateString()
-            }} ~ {{ new Date(all.row.product.product_date.to).toLocaleDateString() }}
+            {{  new Date(all.row.product?.product_date.from).toLocaleDateString()
+            }} ~ {{  new Date(all.row.product?.product_date.to).toLocaleDateString()  }}
           </q-td>
         </template>
 
@@ -34,7 +34,7 @@
           <q-td :btn="btn">
             <!-- (all.rowIndex 購物車內第幾個商品 , all.row.quantity+1 該商品數量) -->
             <q-btn @click="updateCart(all.rowIndex, all.row.quantity - 1)">-</q-btn>
-            <span class="q-px-lg">{{ all.row.quantity }}</span>
+            <span class="q-px-lg">{{  all.row.quantity  }}</span>
             <q-btn @click="updateCart(all.rowIndex, all.row.quantity + 1)">+</q-btn>
           </q-td>
         </template>
@@ -74,25 +74,24 @@
 
               <div class="q-ma-lg">
                 <div v-if="col.name === 'product'">
-                  <div>{{ col.label }} : {{ col.value }}</div>
+                  <div>{{  col.label  }} : {{  col.value  }}</div>
                 </div>
 
                 <div v-if="col.name === 'product_date'">
                   <!-- <div>{{ card.row.product.product_date.from }} ~ {{ card.row.product.product_date.to }}</div> -->
-                  <div>{{ col.label }} : {{ new Date(card.row.product.product_date.from).toLocaleDateString() }} ~ {{
-                      new
-                        Date(card.row.product.product_date.to).toLocaleDateString()
-                  }} </div>
+                  <div>{{  col.label  }} : {{  new Date(card.row.product.product_date.from).toLocaleDateString()  }} ~ {{
+                     new Date(card.row.product.product_date.to).toLocaleDateString()
+                    }} </div>
                 </div>
 
                 <div v-if="col.name === 'quantity'">
                   <!-- {{ card.row.quantity }} -->
                   <div class="row">
-                    <div class="col-3" style="margin: auto 0 ">{{ col.label }} : </div>
+                    <div class="col-3" style="margin: auto 0 ">{{  col.label  }} : </div>
                     <div :btn="btn" class="col-7">
                       <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity - 1)" style="width: 10%;">-
                       </q-btn>
-                      <span class="q-px-lg">{{ card.row.quantity }}</span>
+                      <span class="q-px-lg">{{  card.row.quantity  }}</span>
                       <q-btn flat round @click="updateCart(card.rowIndex, card.row.quantity + 1)" style="width: 10%;">+
                       </q-btn>
                     </div>
@@ -100,11 +99,11 @@
                 </div>
 
                 <div v-if="col.name === 'price'">
-                  <div>{{ col.label }} : {{ col.value }}</div>
+                  <div>{{  col.label  }} : {{  col.value  }}</div>
                 </div>
 
                 <div v-if="col.name === 'subtotal'">
-                  <div>{{ col.label }} : {{ col.value }}</div>
+                  <div>{{  col.label  }} : {{  col.value  }}</div>
                 </div>
 
                 <div v-if="col.name === 'btn'" class="row justify-center">
@@ -128,8 +127,8 @@
 
         <template #body-cell-product_date="all">
           <q-td :product_date="product_date">
-            {{ new Date(all.row.product.product_date.from).toLocaleDateString()
-            }} ~ {{ new Date(all.row.product.product_date.to).toLocaleDateString() }}
+            {{  new Date(all.row.product.product_date.from).toLocaleDateString()
+            }} ~ {{  new Date(all.row.product.product_date.to).toLocaleDateString()  }}
           </q-td>
         </template>
 
@@ -144,7 +143,7 @@
           <q-td :btn="btn">
             <!-- (all.rowIndex 購物車內第幾個商品 , all.row.quantity+1 該商品數量) -->
             <q-btn @click="updateCart(all.rowIndex, all.row.quantity - 1)">-</q-btn>
-            <span class="q-px-lg">{{ all.row.quantity }}</span>
+            <span class="q-px-lg">{{  all.row.quantity  }}</span>
             <q-btn @click="updateCart(all.rowIndex, all.row.quantity + 1)">+</q-btn>
           </q-td>
         </template>
@@ -186,7 +185,7 @@ const cartcolumns = [
     required: true,
     label: '行程名稱',
     align: 'left',
-    field: row => row.product.name,
+    field: row => row.product?.name,
     sortable: true
   },
   {
@@ -210,7 +209,7 @@ const cartcolumns = [
     required: true,
     label: '價錢',
     align: 'left',
-    field: row => row.product.price,
+    field: row => row.product?.price,
     sortable: true
   },
   {
@@ -218,7 +217,7 @@ const cartcolumns = [
     required: true,
     label: '小計',
     align: 'left',
-    field: row => row.product.price * row.quantity,
+    field: row => row.product?.price * row.quantity,
     sortable: true
   },
   {
