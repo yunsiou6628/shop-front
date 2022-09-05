@@ -60,7 +60,7 @@
                 <q-btn class="text-h6"
                   :to="{ path: '/ProductViewAll/', query: { category: '62f26525699f03156454a0f6', name: '百岳新手推薦' } }"
                   style="font-weight: 550; text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多
-                  百岳 / 中級山行程 ＞＞
+                  百岳新手推薦 行程 ＞＞
                 </q-btn>
               </div>
 
@@ -81,8 +81,9 @@
                 <div>帶你/妳一起尋找先民遺留下來的生活痕跡</div>
               </div>
               <div class="q-py-lg">
-                <q-btn class="text-h6" :to="'/ProductViewAll/'"
-                  style="font-weight: 550; text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多 歷史古道 / 秘境步道行程 ＞＞
+                <q-btn class="text-h6"
+                  :to="{ path: '/ProductViewAll/', query: { category: '62f2650d699f03156454a0f3', name: '歷史古道' } }"
+                  style="font-weight: 550; text-shadow: 0.1em 0.2em 0.3em black;">＞＞ 點我更多 歷史古道 行程 ＞＞
                 </q-btn>
               </div>
 
@@ -104,9 +105,10 @@
               </div>
 
               <div class="q-py-lg">
-                <q-btn class="text-h6" :to="'/ProductViewAll/'"
+                <q-btn class="text-h6"
+                  :to="{ path: '/ProductViewAll/', query: { category: '62f2650d699f03156454a0f2', name: '小百岳縱走' } }"
                   style="font-weight: 550; text-shadow: 0.1em 0.2em 0.3em black;"> ＞＞ 點我更多
-                  小百岳行程 ＞＞</q-btn>
+                  小百岳縱走 行程 ＞＞</q-btn>
               </div>
 
             </div>
@@ -135,7 +137,7 @@
             <p>帶你走進山林看見前所未見的台灣！</p>
           </div>
 
-          <q-btn to="/ProductViewAll" label="Read More" class="col-auto"
+          <q-btn to="/AboutUs" label="Read More" class="col-auto"
             style="width: 200px; border-radius: 30px; background: #9AB98D; color: #fff; font-size: 18px;">
           </q-btn>
         </div>

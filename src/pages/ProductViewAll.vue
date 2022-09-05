@@ -23,7 +23,7 @@
                   :key='categoryname._id' @click="filterdata(categoryname._id, categoryname.name)">
                   <!-- <div class="q-pa-xs text-h6">{{ productscategory.sub }}</div> -->
                   <div class="q-pa-xs text-h6  text-weight-bold">{{ categoryname.name }}</div>
-                  <div class="q-pa-xs text-h6">{{ categoryname._id }}</div>
+                  <!-- <div class="q-pa-xs text-h6">{{ categoryname._id }}</div> -->
                 </q-tab>
               </div>
             </div>
@@ -432,16 +432,20 @@ const init = async () => {
       }
       return product
     }))
-    // 點擊首頁輪播圖跳頁後抓取分類id -----------------------------
+    // 點擊首頁輪播圖 banner 跳頁後，抓取路由上的參數(參數為我們寫好的指定分類id) -----------------------------
     // https://www.796t.com/content/1545760631.html
-    // 如果分類 id 等於 輪播圖點擊的連結id , 把 id 給 tab.value 變數的值
+    // 如果路由的參數 等於 小分類id , 把 小分類id 給 tab( tab 的功用是為了進行點擊小分類跳頁的動作)
+    // filterdata(route.query.category, route.query.name) => 呼叫 function
     if (route.query.category === '62f26525699f03156454a0f6') {
       tab.value = '62f26525699f03156454a0f6'
       filterdata(route.query.category, route.query.name)
+    } else if (route.query.category === '62f2650d699f03156454a0f3') {
+      tab.value = '62f2650d699f03156454a0f3'
+      filterdata(route.query.category, route.query.name)
+    } else if (route.query.category === '62f2650d699f03156454a0f2') {
+      tab.value = '62f2650d699f03156454a0f2'
+      filterdata(route.query.category, route.query.name)
     }
-    // else if (route.query.category === '62f26525699f03156454a0f6'){
-
-    // }
   } catch (error) {
     console.log(error)
     Swal.fire({
