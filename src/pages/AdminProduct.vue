@@ -1,5 +1,4 @@
 <!-- AdminProduct -->
-<!-- 老師後台 admin - ProductsView.vue -->
 
 <template>
   <!------------ 表單 ------------>
@@ -8,12 +7,6 @@
     <div class="col-12">
       <q-btn style="background: #5E8A4B; color:#fff" @click="openDialog('')"> 新增商品 </q-btn>
     </div>
-
-    <!-- <q-input v-model="search" filled type="search" hint="Search">
-        <template v-slot:append>
-          <q-icon name="search" />
-        </template>
-      </q-input> -->
 
     <div class="col-12">
       <q-table class=" text-grey-7 " title="商品資料" :rows="products" :columns="columns" row-key="name" :filter="filter">
@@ -42,8 +35,8 @@
             <!-- {{product_date.row}} -->
             <!-- {{product_date.row.product_date.from}}
             {{product_date.row.product_date.to}} -->
-            <div>{{  new Date(product_date.row.product_date.from).toLocaleDateString()  }}</div>
-            <div>{{  new Date(product_date.row.product_date.to).toLocaleDateString()  }}</div>
+            <div>{{ new Date(product_date.row.product_date.from).toLocaleDateString() }}</div>
+            <div>{{ new Date(product_date.row.product_date.to).toLocaleDateString() }}</div>
           </q-td>
         </template>
 
@@ -51,7 +44,7 @@
         <template #body-cell-region="region">
           <q-td>
             <!-- class="text-wrapper" 文字過長自動換行 -->
-            <div class="text-wrapper">{{  region.row.region  }}</div>
+            <div class="text-wrapper">{{ region.row.region }}</div>
           </q-td>
         </template>
 
@@ -67,7 +60,7 @@
         <template #body-cell-description="description">
           <q-td>
             <!-- class="text-wrapper" 文字過長自動換行 -->
-            <div class="text-wrapper">{{  description.row.description  }}</div>
+            <div class="text-wrapper">{{ description.row.description }}</div>
           </q-td>
         </template>
 
@@ -75,13 +68,13 @@
         <template #body-cell-bulletin="bulletin">
           <q-td>
             <!-- class="text-wrapper" 文字過長自動換行 -->
-            <div class="text-wrapper">{{  bulletin.row.bulletin  }}</div>
+            <div class="text-wrapper">{{ bulletin.row.bulletin }}</div>
           </q-td>
         </template>
 
         <template #body-cell-sub="data">
           <q-td>
-            {{  data.row.category.name  }} > {{  data.row.sub.name  }}
+            {{ data.row.category.name }} > {{ data.row.sub.name }}
           </q-td>
         </template>
         <!-- Template Slot (插槽) https://book.vue.tw/CH2/2-4-slots.html => Slot 方式加入按鈕 -->

@@ -191,7 +191,6 @@ const routes = [
           login: true,
           admin: true
         }
-
       },
       // 管理員 - 會員管理
       {
@@ -199,6 +198,16 @@ const routes = [
         component: () => import('pages/AdminMember.vue'),
         meta: {
           title: '登山行程網站 | 管理員-會員管理',
+          login: true,
+          admin: true
+        }
+      },
+      // 管理員 - 文章專欄
+      {
+        path: 'AdminArticlecolumn',
+        component: () => import('pages/AdminArticlecolumn.vue'),
+        meta: {
+          title: '登山行程網站 | 管理員-文章專欄',
           login: true,
           admin: true
         }
