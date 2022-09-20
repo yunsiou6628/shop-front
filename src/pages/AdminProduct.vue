@@ -25,7 +25,7 @@
           <q-td>
             <!-- {{edit}} -->
             <q-btn @click="openDialog(edit.row._id)">編輯</q-btn>
-            <q-btn @click="deleteproduct(edit.row._id)">刪除</q-btn>
+            <q-btn @click="openDeleteDialog(edit.row._id)">刪除</q-btn>
           </q-td>
         </template>
 
@@ -101,7 +101,7 @@
             <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date -->
             <div class="col-6">
               <!-- {{ form.product_date.from }} -->
-              <q-input v-model="form.product_date.from" stack-label label='行程日期' :rules="['date']">
+              <q-input v-model="form.product_date.from" stack-label label='行程日期' :rules='[rules.required]'>
                 <!-- <template v-slot:append>
                       <q-icon name="event" class="cursor-pointer">
                         <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -117,7 +117,7 @@
             </div>
             <div class="col-6">
               <!-- {{ form.product_date.to }} -->
-              <q-input v-model="form.product_date.to" stack-lael label='行程日期' :rules="['date']">
+              <q-input v-model="form.product_date.to" stack-lael label='行程日期' :rules='[rules.required]'>
                 <template v-slot:append>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -150,10 +150,11 @@
               <q-file v-model='form.image' show-size accept='image/*' label='商品圖片' :rules='[rules.size]'></q-file>
             </div>
             <div class="col-12 q-py-sm">
-              <q-input type="textarea" v-model='form.description' label='商品描述'></q-input>
+              <q-input type="textarea" v-model='form.description' label='商品描述' :input-style="{ height:'500px' }">
+              </q-input>
             </div>
             <div class="col-12 q-py-sm">
-              <q-input type="textarea" v-model='form.bulletin' label='公告提醒'></q-input>
+              <q-input type="textarea" v-model='form.bulletin' label='公告提醒' :input-style="{ height:'300px' }"></q-input>
             </div>
             <div class="col-12 q-py-sm">
               <q-input v-model='form.reserve' label='庫存數量(名額)'></q-input>
@@ -173,6 +174,20 @@
 
         </q-form>
       </q-card>
+    </q-dialog>
+
+    <!-- 點刪除商品彈出確認視窗 -->
+    <q-dialog v-model="deleteDialog.dialog" persistent>
+      <q-card class="row justify-center q-py-xl my-card">
+        <div class="col-12 text-center text-h4 text-red-6 q-pa-md">注意!</div>
+        <div class="col-12 text-center text-h6 text-grey-8 q-pa-md">確定要刪除分類嗎?<br>(刪除後將無法復原資料)</div>
+        <div class="col-12 row justify-center q-pa-sm q-pt-md">
+          <!-- 取消刪除 -->
+          <q-btn @click="deleteDialog.dialog = false" flat outline class="col-3 q-py-xs q-mx-md bg-grey-2" label="取消" />
+          <!-- 確定刪除 -->
+          <q-btn @click="deleteproduct(del)" flat class="col-3 q-py-xs q-mx-xs bg-red-6 text-white " label="確定刪除" />
+        </div>
+      </q-card>>
     </q-dialog>
   </div>
 
@@ -300,6 +315,7 @@ const openDialog = (_id) => {
 
 // 送出表單 (不執行原本的submit， 點同一個 submit 按鈕，執行新的 function => submitForm)
 const submitForm = async () => {
+  console.log('lllllllllll')
   // console.log('這是表單' + form.product_date.to)
   form.submitting = true
 
@@ -475,7 +491,21 @@ const columns = [
   }
 ]
 
+// 預設刪除分類的彈窗 為 false
+const deleteDialog = reactive({
+  dialog: false
+})
+
+const del = ref('')
+
+// 開啟刪除確認視窗
+const openDeleteDialog = (productid) => {
+  del.value = productid
+  deleteDialog.dialog = true
+}
+
 const deleteproduct = async (productid) => {
+  deleteDialog.dialog = false
   try {
     await apiAuth.delete('/products/' + productid)
     await Swal.fire({

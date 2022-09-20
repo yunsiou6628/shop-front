@@ -165,23 +165,6 @@ const openDialogCategory = (_id) => {
   form.submitting = false
 }
 
-// const editcategory = (_id) => {
-//   const idx = _id === '' ? -1 : addCategory.findIndex(addCategory => addCategory._id === _id)
-//   form._id = _id
-//   console.log(form._id)
-//   if (idx > -1) {
-//     form.category = addCategory[idx].category
-//     form.sub = addCategory[idx].sub
-//   } else {
-//     form.category = ''
-//     form.sub = ''
-//   }
-//   form.idx = idx
-//   form.dialog = true
-//   form.valid = false
-//   form.submitting = false
-// }
-
 const submitForm = async () => {
   // console.log(form)
   form.submitting = true
@@ -192,13 +175,6 @@ const submitForm = async () => {
   }
   // console.log(fd.sub)
   try {
-    // const { data } = await apiAuth.post('/products_category', form)
-    // addCategory.push(data.result)
-    // Swal.fire({
-    //   icon: 'success',
-    //   title: '成功',
-    //   text: '新增成功'
-    // })
     if (form._id.length === 0) {
       const { data } = await apiAuth.post('/products_category', form)
       addCategory.push(data.result)
@@ -274,7 +250,6 @@ const openDeleteDialog = (categoryid) => {
   deleteDialog.dialog = true
 }
 
-// 暫時註解才不會刪錯資料
 const deletecategory = async (categoryid) => {
   deleteDialog.dialog = false
   console.log('0000' + categoryid)
