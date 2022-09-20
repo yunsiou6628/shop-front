@@ -105,7 +105,7 @@ const orderscolumns = [
     required: true,
     label: '訂單編號',
     align: 'left',
-    field: row => row.products[0].product._id,
+    field: row => row._id,
     sortable: true
   },
   {
@@ -113,7 +113,7 @@ const orderscolumns = [
     required: true,
     label: '行程名稱',
     align: 'left',
-    field: row => row.products[0].product.name,
+    field: row => row.name,
     sortable: true
   },
   {
@@ -128,7 +128,7 @@ const orderscolumns = [
     required: true,
     label: '購買數量',
     align: 'left',
-    field: row => row.products[0].quantity,
+    // field: row => row.products[0].quantity,
     sortable: true
   },
   {
@@ -136,7 +136,7 @@ const orderscolumns = [
     required: true,
     label: '價錢',
     align: 'left',
-    field: row => row.products[0].product.price,
+    // field: row => row.products[0].product.price,
     sortable: true
   },
   {
@@ -144,7 +144,7 @@ const orderscolumns = [
     required: true,
     label: '小計金額',
     align: 'left',
-    field: row => row.products[0].product.price * row.products[0].quantity,
+    // field: row => row.products[0].product.price * row.products[0].quantity,
     sortable: true
   },
   {
