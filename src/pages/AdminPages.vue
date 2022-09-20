@@ -1,9 +1,7 @@
 
-<!-- AdminPages -->
+<!-- 頁面管理-輪播圖AdminPages -->
 
 <template>
-  頁面管理-輪播圖
-  AdminPages
   <div class="q-pa-md" style="max-width: 300px">
     <q-input v-model="text" filled type="textarea" />
   </div>
