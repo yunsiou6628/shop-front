@@ -74,7 +74,7 @@
                 <q-item-section>
                   <q-item-label>
                     <i class="fa-solid fa-list-ul"></i>
-                    清單
+                    訂單
                   </q-item-label>
                 </q-item-section>
               </q-item>
